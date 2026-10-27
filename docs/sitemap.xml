@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url><loc>https://lhcviet.com/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/"/></url>
+<url><loc>https://lhcviet.com/en/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/"/></url>
+<url><loc>https://lhcviet.com/gioi-thieu/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/gioi-thieu/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/about/"/></url>
+<url><loc>https://lhcviet.com/en/about/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/gioi-thieu/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/about/"/></url>
+<url><loc>https://lhcviet.com/dich-vu/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/dich-vu/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/services/"/></url>
+<url><loc>https://lhcviet.com/en/services/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/dich-vu/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/services/"/></url>
+<url><loc>https://lhcviet.com/lien-he/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/lien-he/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/contact/"/></url>
+<url><loc>https://lhcviet.com/en/contact/</loc><xhtml:link rel="alternate" hreflang="vi" href="https://lhcviet.com/lien-he/"/><xhtml:link rel="alternate" hreflang="en" href="https://lhcviet.com/en/contact/"/></url>
+</urlset>
