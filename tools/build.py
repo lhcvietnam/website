@@ -332,6 +332,7 @@ def og_image(dst):
 
 
 def build():
+    cname = (OUT / 'CNAME').read_text() if (OUT / 'CNAME').exists() else None  # written by GitHub Pages settings
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / 'assets').mkdir(parents=True)
@@ -349,6 +350,8 @@ def build():
     (OUT / 'assets' / 'favicon.svg').write_text(favicon(), encoding='utf-8')
     og_image(OUT / 'assets' / 'og.png')
     (OUT / '.nojekyll').write_text('')
+    if cname:
+        (OUT / 'CNAME').write_text(cname)
     (OUT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
