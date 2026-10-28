@@ -35,8 +35,8 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh, l�
 - **VN:** Từ năm 2021, chúng tôi mở rộng sang vốn tự nhiên: rừng, đa dạng sinh học và tài nguyên nước, đồng thời đánh giá rủi ro thiên tai, rủi ro khí hậu và phát thải khí nhà kính cho các dự án.
 - **EN:** Since 2021, we have extended our work to natural capital (forests, biodiversity and water resources) and assess disaster risk, climate risk and greenhouse gas emissions for projects.
 
-- **VN:** Các dự án chúng tôi tham gia sử dụng vốn của đối tác phát triển, tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, trải rộng trên khắp các tỉnh, thành phố và tại Lào. Ở mỗi nhiệm vụ, chúng tôi đi thực địa, tham vấn người dân và các bên liên quan, để mỗi khuyến nghị đưa ra đều có căn cứ và khả thi trong điều kiện cụ thể của dự án.
-- **EN:** The projects we support are financed by development partners, financial institutions, the state budget and private investors, across provinces and cities throughout Viet Nam and in Laos. On every assignment, we go to the field and consult local people and other stakeholders, so that every recommendation we make is well-grounded and workable in the project's specific conditions.
+- **VN:** Các dự án chúng tôi tham gia sử dụng vốn của đối tác phát triển, tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, trải rộng trên khắp các tỉnh, thành phố và tại Lào.
+- **EN:** The projects we support are financed by development partners, financial institutions, the state budget and private investors, across provinces and cities throughout Viet Nam and in Laos.
 
 - **VN:** Với chúng tôi, mỗi dự án là một cam kết. Chúng tôi mong được đồng hành cùng Quý vị.
 - **EN:** For us, every project is a commitment. We look forward to working with you.
