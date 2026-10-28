@@ -87,6 +87,7 @@ PAGES = {  # key: (vi path, en path, vi nav label, en nav label)
     'links': ('lien-ket/', 'en/links/', 'Liên kết hữu ích', 'Useful links'),
 }
 NAV = ['about', 'services', 'updates', 'contact']
+FOOT = ['about', 'services', 'updates', 'links', 'contact']
 NAV_LABEL = {'about': ('Giới thiệu', 'About'), 'services': ('Dịch vụ', 'Services'), 'updates': ('Cập nhật', 'Updates'), 'contact': ('Liên hệ', 'Contact')}
 
 
@@ -148,9 +149,12 @@ def page(key, L, title, desc, body):
 {body}
 </main>
 <footer><div class="wrap">
- <div class="fcol"><p class="fname">{E(x(COMPANY))}</p><p>{E(x(ADDRESS))}</p>
+ <div class="fcol"><p class="fname">{E(COMPANY[0])}</p><p class="fname2">{E(COMPANY[1])}</p>
+ <p>{'Thành lập năm 2014' if L == 'vi' else 'Established 2014'}</p>
+ <p>{E(x(ADDRESS))}</p>
  <p><a href="tel:{PHONE_TEL}">{PHONE}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
- <div class="fcol fright"><p><a href="{r(path_of('links', L))}">{E(PAGES['links'][2 if L == 'vi' else 3])}</a></p><p>Quality Earns Trust</p><p>© {YEAR} LHC {'Việt Nam' if L == 'vi' else 'Viet Nam'}</p></div>
+ <nav class="fcol fnav" aria-label="{'Liên kết chân trang' if L == 'vi' else 'Footer links'}">{''.join(f'<a href="{r(path_of(k, L))}">{E(PAGES[k][2 if L == 'vi' else 3])}</a>' for k in FOOT)}</nav>
+ <div class="fcol fright"><p>Quality Earns Trust</p><p>© {YEAR} LHC {'Việt Nam' if L == 'vi' else 'Viet Nam'}</p></div>
 </div></footer>
 </body>
 </html>
@@ -225,12 +229,13 @@ def about(L):
     steps = ''.join(f'<li>{E(x(s))}</li>' for s in STEPS)
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h1>{'LHC Việt Nam' if v else 'LHC Viet Nam'}</h1></div></div>
 <section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div></div></section>
-<div class="hero"><div class="wrap flush"><div class="stmt">
- <div><h2 class="kicker">{'Tầm nhìn' if v else 'Vision'}</h2><p class="big">{E(x(vision))}</p></div>
- <div><h2 class="kicker">{'Sứ mệnh' if v else 'Mission'}</h2><p class="big">{E(x(mission))}</p></div>
-</div></div></div>
-<section class="tint"><div class="wrap">
- <div class="shead"><p class="kicker">{'Giá trị cốt lõi' if v else 'Core values'}</p></div>
+<section class="tint" id="{'tam-nhin' if v else 'vision'}"><div class="wrap">
+ <div class="shead"><p class="kicker">{'Tầm nhìn · Sứ mệnh · Giá trị cốt lõi' if v else 'Vision · Mission · Core values'}</p><h2>{'Mỗi dự án là một cam kết.' if v else 'Every project is a commitment.'}</h2></div>
+ <div class="vmrow">
+  <div class="vmblk"><h3>{'Tầm nhìn' if v else 'Vision'}</h3><p>{E(x(vision))}</p></div>
+  <div class="vmblk"><h3>{'Sứ mệnh' if v else 'Mission'}</h3><p>{E(x(mission))}</p></div>
+ </div>
+ <h3 class="vmh">{'Giá trị cốt lõi' if v else 'Core values'}</h3>
  <ul class="values">{values}</ul>
 </div></section>
 <section><div class="wrap">
@@ -441,6 +446,8 @@ def build(out=OUT, include_drafts=False):
         del builders['updates']
         if 'updates' in NAV:
             NAV.remove('updates')
+        if 'updates' in FOOT:
+            FOOT.remove('updates')
     urls = []
     for key, fn in builders.items():
         for L in ('vi', 'en'):
