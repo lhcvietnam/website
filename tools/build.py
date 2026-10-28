@@ -1,5 +1,5 @@
 # Build the static bilingual site for lhcviet.com into docs/ (served by GitHub Pages).
-# Source text: content/noi-dung_v04.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026).
+# Source text: content/noi-dung_v05.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026).
 # Usage: python3 tools/build.py
 import html, re, shutil
 from pathlib import Path
@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'docs'
 SITE = 'https://lhcviet.com'
 YEAR = '2026'
-md = (ROOT / 'content' / 'noi-dung_v04.md').read_text(encoding='utf-8')
+md = (ROOT / 'content' / 'noi-dung_v05.md').read_text(encoding='utf-8')
 E = html.escape
 
 
@@ -224,7 +224,7 @@ def about(L):
     prs = ''.join(f'<li><h3>{E(x(n))}</h3><p>{E(x(t))}</p></li>' for n, t in PRINCIPLES)
     steps = ''.join(f'<li>{E(x(s))}</li>' for s in STEPS)
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h1>{'LHC Việt Nam' if v else 'LHC Viet Nam'}</h1></div></div>
-<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in (intro[0], intro[1], intro[3]))}</div></div></section>
+<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div></div></section>
 <div class="hero"><div class="wrap flush"><div class="stmt">
  <div><h2 class="kicker">{'Tầm nhìn' if v else 'Vision'}</h2><p class="big">{E(x(vision))}</p></div>
  <div><h2 class="kicker">{'Sứ mệnh' if v else 'Mission'}</h2><p class="big">{E(x(mission))}</p></div>

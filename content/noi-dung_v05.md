@@ -1,6 +1,6 @@
-# Nội dung website lhcviet.com – song ngữ (v04, 28/10/2026)
+# Nội dung website lhcviet.com – song ngữ (v05, 28/10/2026)
 
-Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh theo anh Huy (28/10/2026); dự án không nêu năm, tỉnh. Mỗi mục có bản tiếng Việt (VN) và tiếng Anh (EN).
+Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh, lời giới thiệu theo anh Huy (28/10/2026); dự án không nêu năm, tỉnh. Mỗi mục có bản tiếng Việt (VN) và tiếng Anh (EN).
 
 
 ## 1. Trang chủ
@@ -29,14 +29,14 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh theo
 
 ### Đoạn giới thiệu ngắn
 
-- **VN:** LHC Việt Nam được thành lập năm 2014 tại Hà Nội. Hơn mười năm qua, chúng tôi tư vấn môi trường và xã hội cho các dự án đầu tư công và tư nhân tại Việt Nam, qua cả ba giai đoạn: chuẩn bị đầu tư, thực hiện dự án và kết thúc xây dựng. Từ năm 2021, LHC mở rộng sang lĩnh vực vốn tự nhiên: rừng, đa dạng sinh học và tài nguyên nước. LHC cũng đánh giá rủi ro thiên tai, rủi ro khí hậu và phát thải khí nhà kính trong các dự án thích ứng với biến đổi khí hậu.
-- **EN:** LHC Viet Nam was established in Ha Noi in 2014. For more than ten years, we have provided environmental and social consulting services for public and private investment projects in Viet Nam, across all three stages: investment preparation, project implementation and construction completion. Since 2021, LHC has expanded into natural capital: forests, biodiversity and water resources. LHC also assesses disaster risk, climate risk and greenhouse gas emissions in climate change adaptation projects.
+- **VN:** LHC Việt Nam được thành lập năm 2014 tại Hà Nội. Hơn mười năm qua, chúng tôi đồng hành cùng các cơ quan nhà nước, ban quản lý dự án, đối tác phát triển và nhà đầu tư trong công tác môi trường và xã hội của các dự án đầu tư công và tư nhân, từ khi chuẩn bị đầu tư, trong suốt quá trình thực hiện đến khi kết thúc xây dựng.
+- **EN:** LHC Viet Nam was established in Ha Noi in 2014. For more than ten years, we have worked alongside government agencies, project management units, development partners and investors on the environmental and social aspects of public and private investment projects, from investment preparation, through implementation, to construction completion.
 
-- **VN:** LHC đã thực hiện nhiều hợp đồng tư vấn cho các dự án sử dụng vốn của đối tác phát triển, tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, tại các tỉnh, thành phố trên cả nước và tại Lào.
-- **EN:** LHC has delivered consulting contracts for projects financed by development partners, financial institutions, the state budget and private investors, in provinces and cities across Viet Nam and in Laos.
+- **VN:** Từ năm 2021, chúng tôi mở rộng sang vốn tự nhiên: rừng, đa dạng sinh học và tài nguyên nước, đồng thời đánh giá rủi ro thiên tai, rủi ro khí hậu và phát thải khí nhà kính cho các dự án thích ứng với biến đổi khí hậu.
+- **EN:** Since 2021, we have extended our work to natural capital (forests, biodiversity and water resources) and assess disaster risk, climate risk and greenhouse gas emissions in climate change adaptation projects.
 
-- **VN:** Hồ sơ này trình bày những gì LHC đã làm, theo từng nhóm dịch vụ và từng giai đoạn của chu trình dự án. Mọi số liệu đều lấy từ danh mục hợp đồng của công ty.
-- **EN:** This profile presents what LHC has done, by service line and by stage of the project cycle. All figures are drawn from the company’s contract register.
+- **VN:** Các dự án chúng tôi tham gia sử dụng vốn của đối tác phát triển, tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, trải rộng trên khắp các tỉnh, thành phố và tại Lào. Ở mỗi nhiệm vụ, chúng tôi đi thực địa, lắng nghe người dân và các bên liên quan, để lời tư vấn đúng phạm vi, có bằng chứng và sát với thực tế.
+- **EN:** The projects we support are financed by development partners, financial institutions, the state budget and private investors, across provinces and cities throughout Viet Nam and in Laos. On every assignment, we go to the field and listen to local people and other stakeholders, so that our advice stays within scope, rests on evidence and fits local realities.
 
 - **VN:** Với chúng tôi, mỗi dự án là một cam kết. Chúng tôi mong được đồng hành cùng Quý vị.
 - **EN:** For us, every project is a commitment. We look forward to working with you.
