@@ -29,14 +29,14 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh, l�
 
 ### Đoạn giới thiệu ngắn
 
-- **VN:** LHC Việt Nam được thành lập năm 2014 tại Hà Nội. Hơn mười năm qua, chúng tôi đồng hành cùng các cơ quan nhà nước, ban quản lý dự án, đối tác phát triển và nhà đầu tư trong công tác môi trường và xã hội của các dự án đầu tư công và tư nhân, từ khi chuẩn bị đầu tư, trong suốt quá trình thực hiện đến khi kết thúc xây dựng.
+- **VN:** LHC Việt Nam được thành lập năm 2014 tại Hà Nội. Hơn mười năm qua, chúng tôi đồng hành cùng các cơ quan nhà nước, ban quản lý dự án, đối tác phát triển và nhà đầu tư trong công tác môi trường và xã hội của các dự án đầu tư công và tư nhân, từ khi chuẩn bị đầu tư, trong suốt quá trình thực hiện và cho đến khi kết thúc xây dựng.
 - **EN:** LHC Viet Nam was established in Ha Noi in 2014. For more than ten years, we have worked alongside government agencies, project management units, development partners and investors on the environmental and social aspects of public and private investment projects, from investment preparation, through implementation, to construction completion.
 
-- **VN:** Từ năm 2021, chúng tôi mở rộng sang vốn tự nhiên: rừng, đa dạng sinh học và tài nguyên nước, đồng thời đánh giá rủi ro thiên tai, rủi ro khí hậu và phát thải khí nhà kính cho các dự án thích ứng với biến đổi khí hậu.
-- **EN:** Since 2021, we have extended our work to natural capital (forests, biodiversity and water resources) and assess disaster risk, climate risk and greenhouse gas emissions in climate change adaptation projects.
+- **VN:** Từ năm 2021, chúng tôi mở rộng sang vốn tự nhiên: rừng, đa dạng sinh học và tài nguyên nước, đồng thời đánh giá rủi ro thiên tai, rủi ro khí hậu và phát thải khí nhà kính cho các dự án.
+- **EN:** Since 2021, we have extended our work to natural capital (forests, biodiversity and water resources) and assess disaster risk, climate risk and greenhouse gas emissions for projects.
 
-- **VN:** Các dự án chúng tôi tham gia sử dụng vốn của đối tác phát triển, tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, trải rộng trên khắp các tỉnh, thành phố và tại Lào. Ở mỗi nhiệm vụ, chúng tôi đi thực địa, lắng nghe người dân và các bên liên quan, để lời tư vấn đúng phạm vi, có bằng chứng và sát với thực tế.
-- **EN:** The projects we support are financed by development partners, financial institutions, the state budget and private investors, across provinces and cities throughout Viet Nam and in Laos. On every assignment, we go to the field and listen to local people and other stakeholders, so that our advice stays within scope, rests on evidence and fits local realities.
+- **VN:** Các dự án chúng tôi tham gia sử dụng vốn của đối tác phát triển, tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, trải rộng trên khắp các tỉnh, thành phố và tại Lào. Ở mỗi nhiệm vụ, chúng tôi đi thực địa, tham vấn người dân và các bên liên quan, để mỗi khuyến nghị đưa ra đều có căn cứ và khả thi trong điều kiện cụ thể của dự án.
+- **EN:** The projects we support are financed by development partners, financial institutions, the state budget and private investors, across provinces and cities throughout Viet Nam and in Laos. On every assignment, we go to the field and consult local people and other stakeholders, so that every recommendation we make is well-grounded and workable in the project's specific conditions.
 
 - **VN:** Với chúng tôi, mỗi dự án là một cam kết. Chúng tôi mong được đồng hành cùng Quý vị.
 - **EN:** For us, every project is a commitment. We look forward to working with you.

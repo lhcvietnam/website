@@ -1,5 +1,5 @@
 # Build the static bilingual site for lhcviet.com into docs/ (served by GitHub Pages).
-# Source text: content/noi-dung_v05.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026).
+# Source text: content/noi-dung_v06.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026).
 # Usage: python3 tools/build.py
 import html, re, shutil
 from pathlib import Path
@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'docs'
 SITE = 'https://lhcviet.com'
 YEAR = '2026'
-md = (ROOT / 'content' / 'noi-dung_v05.md').read_text(encoding='utf-8')
+md = (ROOT / 'content' / 'noi-dung_v06.md').read_text(encoding='utf-8')
 E = html.escape
 
 
@@ -150,7 +150,7 @@ def page(key, L, title, desc, body):
 </main>
 <footer><div class="wrap">
  <div class="fcol"><p class="fname">{E(COMPANY[0])}</p><p class="fname2">{E(COMPANY[1])}</p>
- <p>{'Thành lập năm 2014' if L == 'vi' else 'Established 2014'}</p>
+ <p>{'Thành lập năm 2014 · Mã số doanh nghiệp: 0106730052' if L == 'vi' else 'Established 2014 · Enterprise code: 0106730052'}</p>
  <p>{E(x(ADDRESS))}</p>
  <p><a href="tel:{PHONE_TEL}">{PHONE}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
  <nav class="fcol fnav" aria-label="{'Liên kết chân trang' if L == 'vi' else 'Footer links'}">{''.join(f'<a href="{r(path_of(k, L))}">{E(PAGES[k][2 if L == 'vi' else 3])}</a>' for k in FOOT)}</nav>
