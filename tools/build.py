@@ -83,8 +83,11 @@ PAGES = {  # key: (vi path, en path, vi nav label, en nav label)
     'about': ('gioi-thieu/', 'en/about/', 'Giới thiệu', 'About'),
     'services': ('dich-vu/', 'en/services/', 'Dịch vụ', 'Services'),
     'contact': ('lien-he/', 'en/contact/', 'Liên hệ', 'Contact'),
+    'updates': ('cap-nhat/', 'en/updates/', 'Cập nhật chuyên môn', 'Updates'),
+    'links': ('lien-ket/', 'en/links/', 'Liên kết hữu ích', 'Useful links'),
 }
-NAV = ['about', 'services', 'contact']
+NAV = ['about', 'services', 'updates', 'contact']
+NAV_LABEL = {'about': ('Giới thiệu', 'About'), 'services': ('Dịch vụ', 'Services'), 'updates': ('Cập nhật', 'Updates'), 'contact': ('Liên hệ', 'Contact')}
 
 
 def path_of(key, L):
@@ -105,7 +108,8 @@ def page(key, L, title, desc, body):
     other = 'en' if L == 'vi' else 'vi'
     r = lambda p: rel(me, p)
     x = lambda p: p[0] if L == 'vi' else p[1]
-    nav = ''.join(f'<a href="{r(path_of(k, L))}"{" aria-current=page" if k == key else ""}>{E(PAGES[k][2 if L == "vi" else 3])}</a>' for k in NAV)
+    cur = 'updates' if key.startswith('post:') else key
+    nav = ''.join(f'<a href="{r(path_of(k, L))}"{" aria-current=page" if k == cur else ""}>{E(NAV_LABEL[k][0 if L == "vi" else 1])}</a>' for k in NAV)
     full_title = f'{title} | LHC Việt Nam' if L == 'vi' else f'{title} | LHC Viet Nam'
     if key == 'home':
         full_title = title
@@ -120,7 +124,7 @@ def page(key, L, title, desc, body):
 <link rel="alternate" hreflang="vi" href="{SITE}/{path_of(key, 'vi')}">
 <link rel="alternate" hreflang="en" href="{SITE}/{path_of(key, 'en')}">
 <link rel="alternate" hreflang="x-default" href="{SITE}/{path_of(key, 'vi')}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{'article' if key.startswith('post:') else 'website'}">
 <meta property="og:site_name" content="LHC Việt Nam">
 <meta property="og:title" content="{E(full_title)}">
 <meta property="og:description" content="{E(desc)}">
@@ -146,7 +150,7 @@ def page(key, L, title, desc, body):
 <footer><div class="wrap">
  <div class="fcol"><p class="fname">{E(x(COMPANY))}</p><p>{E(x(ADDRESS))}</p>
  <p><a href="tel:{PHONE_TEL}">{PHONE}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
- <div class="fcol fright"><p>Quality Earns Trust</p><p>© {YEAR} LHC {'Việt Nam' if L == 'vi' else 'Viet Nam'}</p></div>
+ <div class="fcol fright"><p><a href="{r(path_of('links', L))}">{E(PAGES['links'][2 if L == 'vi' else 3])}</a></p><p>Quality Earns Trust</p><p>© {YEAR} LHC {'Việt Nam' if L == 'vi' else 'Viet Nam'}</p></div>
 </div></footer>
 </body>
 </html>
@@ -289,6 +293,108 @@ def contact_page(L):
     return page('contact', L, title, desc, body)
 
 
+# ---------- useful links ----------
+LINKS = [  # (group vi, group en, [(name vi, name en, url)]) - official pages, checked 28/10/2026
+    ('Khung chính sách môi trường và xã hội của nhà tài trợ', 'Financiers\' environmental and social frameworks', [
+        ('Ngân hàng Thế giới (WB): Khung môi trường và xã hội', 'World Bank: Environmental and Social Framework', 'https://www.worldbank.org/esf'),
+        ('Ngân hàng Phát triển châu Á (ADB): Khung chính sách môi trường và xã hội', 'Asian Development Bank: Environmental and Social Framework', 'https://www.adb.org/who-we-are/safeguards/environmental-social-framework'),
+        ('IFC: Tiêu chuẩn hoạt động về bền vững môi trường và xã hội', 'IFC: Performance Standards on Environmental and Social Sustainability', 'https://www.ifc.org/performancestandards'),
+        ('JICA: Hướng dẫn về cân nhắc môi trường và xã hội (2022)', 'JICA: Guidelines for Environmental and Social Considerations (2022)', 'https://www.jica.go.jp/english/our_work/social_environmental/guideline/'),
+        ('AFD: Chính sách quản lý rủi ro môi trường và xã hội', 'AFD: Environmental and Social Risk Management Policy', 'https://www.afd.fr/en/ressources/environmental-and-social-risk-management-policy-afd-funded-operations'),
+        ('UNDP: Tiêu chuẩn xã hội và môi trường', 'UNDP: Social and Environmental Standards', 'https://www.undp.org/accountability/social-and-environmental-responsibility/social-and-environmental-standards'),
+    ]),
+    ('Văn bản pháp luật và cơ quan nhà nước', 'Vietnamese law and government agencies', [
+        ('Cơ sở dữ liệu quốc gia về pháp luật (Bộ Tư pháp)', 'National Legal Database (Ministry of Justice)', 'https://vbpl.vn/'),
+        ('Hệ thống văn bản, Cổng Thông tin điện tử Chính phủ', 'Legal documents, Government e-Portal', 'https://vanban.chinhphu.vn/'),
+        ('Cổng Thông tin điện tử Chính phủ', 'Government e-Portal of Viet Nam', 'https://chinhphu.vn/'),
+        ('Bộ Nông nghiệp và Môi trường', 'Ministry of Agriculture and Environment', 'https://mae.gov.vn/'),
+    ]),
+]
+
+
+def links_page(L):
+    v = L == 'vi'
+    groups = ''
+    for gv, ge, items in LINKS:
+        lis = ''.join(f'<li><a href="{u}" rel="noopener" target="_blank">{E(nv if v else ne)}</a><span class="host">{E(u.split("/")[2].removeprefix("www."))}</span></li>' for nv, ne, u in items)
+        groups += f'<div><h2 class="sub">{E(gv if v else ge)}</h2><ul class="links">{lis}</ul></div>'
+    body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Tài liệu tham khảo' if v else 'Reference'}</p><h1>{'Liên kết hữu ích' if v else 'Useful links'}</h1>
+ <p class="lede">{'Trang chính thức của các nhà tài trợ và cơ quan nhà nước mà chúng tôi thường dùng trong công việc. Các liên kết mở trang bên ngoài.' if v else 'Official pages of financiers and government agencies that we use in our work. Links open external sites.'}</p></div></div>
+<section><div class="wrap two">{groups}</div></section>'''
+    desc = ('Liên kết đến khung chính sách môi trường và xã hội của WB, ADB, IFC, JICA, AFD, UNDP và cơ sở dữ liệu pháp luật Việt Nam.'
+            if v else 'Links to the environmental and social frameworks of WB, ADB, IFC, JICA, AFD and UNDP, and to Vietnamese legal databases.')
+    return page('links', L, 'Liên kết hữu ích' if v else 'Useful links', desc, body)
+
+
+# ---------- updates (posts) ----------
+def inline(t):
+    t = E(t, quote=False)
+    t = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', t)
+    return re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+)\)', r'<a href="\2" rel="noopener" target="_blank">\1</a>', t)
+
+def md2html(text):
+    out, items = [], []
+    def flush():
+        if items:
+            out.append('<ul>' + ''.join(f'<li>{inline(i)}</li>' for i in items) + '</ul>'); items.clear()
+    for block in re.split(r'\n\s*\n', text.strip()):
+        for line in block.split('\n'):
+            if line.startswith('- '):
+                items.append(line[2:]); continue
+            flush()
+            if line.startswith('### '):
+                out.append(f'<h2>{inline(line[4:])}</h2>')
+            elif line.strip():
+                out.append(f'<p>{inline(line)}</p>')
+        flush()
+    return '\n'.join(out)
+
+def load_posts(include_drafts=False):
+    posts = []
+    for f in sorted((ROOT / 'content' / 'cap-nhat').glob('*.md'), reverse=True):
+        raw = f.read_text(encoding='utf-8')
+        _, fm, rest = raw.split('---\n', 2)
+        meta = dict(line.split(': ', 1) for line in fm.strip().split('\n'))
+        if meta['status'] != 'published' and not include_drafts:
+            continue
+        parts = re.split(r'(?m)^## (VI|EN|Nguồn / Sources)\s*$', rest)
+        sect = dict(zip(parts[1::2], parts[2::2]))
+        meta.update(vi=sect['VI'], en=sect['EN'], sources=sect.get('Nguồn / Sources', ''))
+        key = 'post:' + meta['slug']
+        PAGES[key] = (f"cap-nhat/{meta['slug']}/", f"en/updates/{meta['slug_en']}/", meta['title_vi'], meta['title_en'])
+        meta['key'] = key
+        posts.append(meta)
+    return posts
+
+def fmt_date(d, L):
+    y, m, dd = d.split('-')
+    return f'{dd}/{m}/{y}' if L == 'vi' else f'{int(dd)} {["January","February","March","April","May","June","July","August","September","October","November","December"][int(m)-1]} {y}'
+
+def post_page(p, L):
+    v = L == 'vi'
+    me = path_of(p['key'], L)
+    body = f'''<div class="phead"><div class="wrap narrow"><p class="kicker">{E(p['topic_vi' if v else 'topic_en'])} · <time datetime="{p['date']}">{fmt_date(p['date'], L)}</time></p>
+ <h1>{E(p['title_vi' if v else 'title_en'])}</h1><p class="lede">{E(p['summary_vi' if v else 'summary_en'])}</p></div></div>
+<section><div class="wrap narrow"><article class="post">{md2html(p['vi' if v else 'en'])}
+<h2>{'Nguồn' if v else 'Sources'}</h2>{md2html(p['sources'])}</article>
+<p class="back"><a href="{rel(me, path_of('updates', L))}">{'Tất cả bài cập nhật' if v else 'All updates'}</a></p></div></section>'''
+    return page(p['key'], L, p['title_vi' if v else 'title_en'], p['summary_vi' if v else 'summary_en'], body)
+
+def updates_page(L, posts):
+    v = L == 'vi'
+    me = path_of('updates', L)
+    items = ''.join(f'''<li><a class="pcard" href="{rel(me, path_of(p['key'], L))}"><span class="kicker">{E(p['topic_vi' if v else 'topic_en'])} · {fmt_date(p['date'], L)}</span>
+ <span class="ptitle">{E(p['title_vi' if v else 'title_en'])}</span><span class="psum">{E(p['summary_vi' if v else 'summary_en'])}</span></a></li>''' for p in posts)
+    if not posts:
+        items = f"<li class=\"empty\">{'Bài viết đầu tiên sẽ được đăng trong thời gian tới.' if v else 'The first articles will be published soon.'}</li>"
+    body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Cập nhật' if v else 'Updates'}</p><h1>{'Cập nhật chuyên môn' if v else 'Professional updates'}</h1>
+ <p class="lede">{'Văn bản pháp luật mới, thay đổi chính sách của nhà tài trợ và hoạt động của LHC, kèm nguồn chính thức.' if v else 'New Vietnamese legislation, changes in financier policies and LHC news, with official sources.'}</p></div></div>
+<section><div class="wrap"><ul class="plist">{items}</ul></div></section>'''
+    desc = ('Cập nhật pháp luật môi trường, đất đai, tái định cư và chính sách môi trường – xã hội của WB, ADB, JICA.'
+            if v else 'Updates on Vietnamese environmental, land and resettlement law and on WB, ADB and JICA environmental and social policies.')
+    return page('updates', L, 'Cập nhật chuyên môn' if v else 'Professional updates', desc, body)
+
+
 NOT_FOUND = '''<!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Không tìm thấy trang | Page not found</title><meta name="robots" content="noindex">
@@ -319,12 +425,22 @@ def og_image(dst):
     img.save(dst, optimize=True)
 
 
-def build():
+def build(out=OUT, include_drafts=False):
+    global OUT
+    OUT = out
     cname = (OUT / 'CNAME').read_text() if (OUT / 'CNAME').exists() else None  # written by GitHub Pages settings
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / 'assets').mkdir(parents=True)
-    builders = {'home': home, 'about': about, 'services': services, 'contact': contact_page}
+    posts = load_posts(include_drafts)
+    builders = {'home': home, 'about': about, 'services': services, 'updates': lambda L: updates_page(L, posts),
+                'links': links_page, 'contact': contact_page}
+    for p in posts:
+        builders[p['key']] = lambda L, p=p: post_page(p, L)
+    if not posts:  # no published article yet: keep the section out of the site
+        del builders['updates']
+        if 'updates' in NAV:
+            NAV.remove('updates')
     urls = []
     for key, fn in builders.items():
         for L in ('vi', 'en'):
@@ -353,4 +469,8 @@ def build():
 
 
 if __name__ == '__main__':
-    build()
+    import sys
+    if '--drafts' in sys.argv:  # preview with draft posts, never deployed
+        build(ROOT / 'preview', include_drafts=True)
+    else:
+        build()
