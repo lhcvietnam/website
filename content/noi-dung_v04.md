@@ -1,6 +1,6 @@
-# Nội dung website lhcviet.com – song ngữ (v03, 20/10/2026)
+# Nội dung website lhcviet.com – song ngữ (v04, 28/10/2026)
 
-Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng Việt (VN) và tiếng Anh (EN).
+Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh theo anh Huy (28/10/2026); dự án không nêu năm, tỉnh. Mỗi mục có bản tiếng Việt (VN) và tiếng Anh (EN).
 
 
 ## 1. Trang chủ
@@ -18,11 +18,8 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 
 ### Con số năng lực
 
-- **VN:** 122 hợp đồng, nhiệm vụ, 2015–2026
-- **EN:** 122 contracts and assignments, 2015–2026
-
-- **VN:** 96 dự án, tiểu dự án
-- **EN:** 96 projects and subprojects
+- **VN:** 2014 thành lập tại Hà Nội
+- **EN:** 2014 established in Ha Noi
 
 - **VN:** 11 đối tác phát triển và tổ chức tài chính
 - **EN:** 11 development partners and financial institutions
@@ -30,16 +27,13 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 - **VN:** 34/34 tỉnh, thành phố và Lào
 - **EN:** 34/34 provinces and cities, plus Laos
 
-- **VN:** 77 hợp đồng LHC độc lập hoặc đứng đầu liên danh
-- **EN:** 77 contracts as single firm or JV lead member
-
 ### Đoạn giới thiệu ngắn
 
 - **VN:** LHC Việt Nam được thành lập năm 2014 tại Hà Nội. Hơn mười năm qua, chúng tôi tư vấn môi trường và xã hội cho các dự án đầu tư công và tư nhân tại Việt Nam, qua cả ba giai đoạn: chuẩn bị đầu tư, thực hiện dự án và kết thúc xây dựng. Từ năm 2021, LHC mở rộng sang lĩnh vực vốn tự nhiên: rừng, đa dạng sinh học và tài nguyên nước. LHC cũng đánh giá rủi ro thiên tai, rủi ro khí hậu và phát thải khí nhà kính trong các dự án thích ứng với biến đổi khí hậu.
 - **EN:** LHC Viet Nam was established in Ha Noi in 2014. For more than ten years, we have provided environmental and social consulting services for public and private investment projects in Viet Nam, across all three stages: investment preparation, project implementation and construction completion. Since 2021, LHC has expanded into natural capital: forests, biodiversity and water resources. LHC also assesses disaster risk, climate risk and greenhouse gas emissions in climate change adaptation projects.
 
-- **VN:** Tính đến tháng 10/2026, LHC đã thực hiện 122 hợp đồng, nhiệm vụ cho 96 dự án, tiểu dự án, sử dụng vốn của 11 đối tác phát triển và tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, tại cả 34 tỉnh, thành phố và tại Lào.
-- **EN:** As of October 2026, LHC has delivered 122 contracts and assignments for 96 projects and subprojects financed by 11 development partners and financial institutions, the state budget and private investors, in all 34 provinces and cities of Viet Nam and in Laos.
+- **VN:** LHC đã thực hiện nhiều hợp đồng tư vấn cho các dự án sử dụng vốn của đối tác phát triển, tổ chức tài chính, ngân sách nhà nước và nhà đầu tư tư nhân, tại các tỉnh, thành phố trên cả nước và tại Lào.
+- **EN:** LHC has delivered consulting contracts for projects financed by development partners, financial institutions, the state budget and private investors, in provinces and cities across Viet Nam and in Laos.
 
 - **VN:** Hồ sơ này trình bày những gì LHC đã làm, theo từng nhóm dịch vụ và từng giai đoạn của chu trình dự án. Mọi số liệu đều lấy từ danh mục hợp đồng của công ty.
 - **EN:** This profile presents what LHC has done, by service line and by stage of the project cycle. All figures are drawn from the company’s contract register.
@@ -52,13 +46,13 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 
 ### Tầm nhìn / Vision
 
-- **VN:** Trở thành đơn vị tư vấn môi trường, xã hội và vốn tự nhiên trong nước được các ban quản lý dự án, đối tác phát triển và nhà đầu tư tin cậy giao những nhiệm vụ đòi hỏi tính độc lập và thận trọng: đánh giá tác động, giám sát và đánh giá độc lập. Trên nền tảng đó, LHC phát triển vốn tự nhiên thành lĩnh vực thứ ba: rừng, đa dạng sinh học, tài nguyên nước, các bon rừng, gắn với giảm nhẹ rủi ro thiên tai và thích ứng với biến đổi khí hậu; từng bước mở rộng sang Lào, Campuchia qua các gói thầu quốc tế.
-- **EN:** To be a trusted domestic environmental, social and natural capital advisory firm to which project management units, development partners and investors entrust work that demands independence and rigor: impact assessment, independent monitoring and evaluation. On this basis, LHC is building natural capital (forests, biodiversity, water resources, forest carbon), linked to disaster risk reduction and climate change adaptation, into its third pillar, and gradually expanding to Laos and Cambodia through international assignments.
+- **VN:** Trở thành đối tác tư vấn môi trường, xã hội và vốn tự nhiên đáng tin cậy của các cơ quan nhà nước, ban quản lý dự án, đối tác phát triển và nhà đầu tư tại Việt Nam. Sự tin cậy đó được xây dựng bằng chất lượng của từng sản phẩm, hiểu biết thực tế và tinh thần trách nhiệm xuyên suốt chu trình dự án.
+- **EN:** To be a trusted environmental, social and natural capital advisory partner to government agencies, project management units, development partners and investors in Viet Nam, earning that trust through the quality of every output, practical local knowledge and accountability throughout the project cycle.
 
 ### Sứ mệnh / Mission
 
-- **VN:** LHC Việt Nam cung cấp dịch vụ tư vấn môi trường, xã hội và vốn tự nhiên cho cơ quan nhà nước, ban quản lý dự án, đối tác phát triển và nhà đầu tư. Chúng tôi làm việc theo pháp luật Việt Nam và khung chính sách môi trường – xã hội của các đối tác phát triển, dựa trên khảo sát thực địa và tham vấn người bị ảnh hưởng và các bên liên quan. Qua đó, LHC giúp khách hàng nhận diện, giảm thiểu và theo dõi tác động của dự án đến người dân, cộng đồng, người lao động và môi trường tự nhiên, cũng như rủi ro thiên tai và biến đổi khí hậu đối với dự án, từ khi chuẩn bị đầu tư đến khi kết thúc xây dựng.
-- **EN:** LHC Viet Nam provides environmental, social and natural capital advisory services to government agencies, PMUs, development partners and investors. Working under Vietnamese law and development partners’ environmental and social frameworks, and grounded in fieldwork and consultation with affected people and other stakeholders, we help clients identify, mitigate and monitor project impacts on people, communities, workers and the natural environment, and disaster and climate risks to the project, from investment preparation to construction completion.
+- **VN:** Cung cấp dịch vụ tư vấn môi trường, xã hội và vốn tự nhiên đúng phạm vi, dựa trên bằng chứng và phù hợp với thực tế Việt Nam. Qua đó, LHC giúp khách hàng chuẩn bị và thực hiện dự án có trách nhiệm với cộng đồng, người lao động và môi trường tự nhiên.
+- **EN:** To provide environmental, social and natural capital advisory services that stay within scope, rest on evidence and fit Vietnamese realities, helping clients prepare and implement projects responsibly towards communities, workers and the natural environment.
 
 ### Giá trị cốt lõi / Core values
 
@@ -125,16 +119,16 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 - **VN:** Kiểm toán ESHS định kỳ và hoàn thành giai đoạn xây dựng; kiểm toán môi trường và xã hội cấp doanh nghiệp và dự án của doanh nghiệp; kế hoạch quản lý an toàn, sức khỏe nghề nghiệp (OHSMP)
 - **EN:** Periodic and construction-completion ESHS audits; environmental and social audits of companies and their projects; occupational health and safety management plans (OHSMP)
 
-**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · địa bàn · năm · sản phẩm)
+**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · vùng · sản phẩm)
 
-- **VN:** Hạ tầng chống chịu thiên tai vùng ven biển · WB · Quảng Ninh, Hải Phòng, Hưng Yên, Ninh Bình, Thanh Hóa · 2026 · ĐTM, ESIA/ESMP/NTS, ESCP
-- **EN:** Coastal hazard resilience infrastructure · WB · Quang Ninh, Hai Phong, Hung Yen, Ninh Binh, Thanh Hoa · 2026 · EIA, ESIA/ESMP/NTS, ESCP
+- **VN:** Hạ tầng chống chịu thiên tai vùng ven biển · WB · 5 tỉnh ven biển phía Bắc · ĐTM, ESIA/ESMP/NTS, ESCP
+- **EN:** Coastal hazard resilience infrastructure · WB · 5 northern coastal provinces · EIA, ESIA/ESMP/NTS, ESCP
 
-- **VN:** Đường cao tốc · ADB, JICA · TP. Hồ Chí Minh, Đồng Nai · 2024 · Giám sát môi trường độc lập
-- **EN:** Expressway · ADB, JICA · Ho Chi Minh City, Dong Nai · 2024 · Independent environmental monitoring
+- **VN:** Đường cao tốc · ADB, JICA · Đông Nam Bộ · Giám sát môi trường độc lập
+- **EN:** Expressway · ADB, JICA · South-East region · Independent environmental monitoring
 
-- **VN:** Khách sạn của nhà đầu tư tư nhân · IFC · Quảng Ninh; Viêng Chăn, Lào · 2021–2023 · Kiểm toán ESHS định kỳ và hoàn thành giai đoạn xây dựng
-- **EN:** Private hotel developments · IFC · Quang Ninh; Vientiane, Laos · 2021–2023 · Periodic and construction-completion ESHS audits
+- **VN:** Khách sạn của nhà đầu tư tư nhân · IFC · Việt Nam và Lào · Kiểm toán ESHS định kỳ và hoàn thành giai đoạn xây dựng
+- **EN:** Private hotel developments · IFC · Viet Nam and Laos · Periodic and construction-completion ESHS audits
 
 ### 3.2 Xã hội, Dân tộc thiểu số, Giới, Tái định cư và Phục hồi sinh kế / Social, Ethnic Minorities, Gender, Resettlement and Livelihood Restoration
 
@@ -161,16 +155,16 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 - **VN:** Kiểm toán, đánh giá độc lập, đánh giá hoàn thành kế hoạch phục hồi sinh kế (LRP)
 - **EN:** Audit, independent evaluation and completion evaluation of livelihood restoration plans (LRP)
 
-**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · địa bàn · năm · sản phẩm)
+**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · vùng · sản phẩm)
 
-- **VN:** Ba tuyến quốc lộ kết nối vùng Đồng bằng sông Cửu Long · WB · Tây Ninh, Vĩnh Long, Cà Mau, Cần Thơ · 2025 · 02 RP, 03 EMDP, SEP, LMP
-- **EN:** Three regional national highways, Mekong Delta · WB · Tay Ninh, Vinh Long, Ca Mau, Can Tho · 2025 · 2 RPs, 3 EMDPs, SEP, LMP
+- **VN:** Ba tuyến quốc lộ kết nối vùng Đồng bằng sông Cửu Long · WB · 4 tỉnh · 02 RP, 03 EMDP, SEP, LMP
+- **EN:** Three regional national highways, Mekong Delta · WB · 4 provinces · 2 RPs, 3 EMDPs, SEP, LMP
 
-- **VN:** Trạm biến áp và đường dây 500 kV · AFD · TP. Hồ Chí Minh (Bình Dương cũ), Đồng Nai · 2023 · 03 RAP, 03 kế hoạch phục hồi sinh kế và phát triển cộng đồng
-- **EN:** 500 kV substations and transmission lines · AFD · Ho Chi Minh City (former Binh Duong), Dong Nai · 2023 · 3 RAPs, 3 livelihood restoration and community development plans
+- **VN:** Trạm biến áp và đường dây 500 kV · AFD · Đông Nam Bộ · 03 RAP, 03 kế hoạch phục hồi sinh kế và phát triển cộng đồng
+- **EN:** 500 kV substations and transmission lines · AFD · South-East region · 3 RAPs, 3 livelihood restoration and community development plans
 
-- **VN:** Nhà máy nhiệt điện của nhà đầu tư tư nhân · JBIC · Hà Tĩnh; Khánh Hòa · 2021–2025 · Đánh giá độc lập và đánh giá hoàn thành kế hoạch phục hồi sinh kế (LRP)
-- **EN:** Private thermal power plants · JBIC · Ha Tinh; Khanh Hoa · 2021–2025 · Independent evaluation and completion evaluation of livelihood restoration plans (LRP)
+- **VN:** Nhà máy nhiệt điện của nhà đầu tư tư nhân · JBIC · miền Trung · Đánh giá độc lập và đánh giá hoàn thành kế hoạch phục hồi sinh kế (LRP)
+- **EN:** Private thermal power plants · JBIC · Central Viet Nam · Independent evaluation and completion evaluation of livelihood restoration plans (LRP)
 
 ### 3.3 Vốn tự nhiên, rừng, đa dạng sinh học và tài nguyên nước / Natural Capital, Forests, Biodiversity and Water Resources
 
@@ -188,16 +182,16 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 - **VN:** Lập đề án xin cấp phép khai thác, sử dụng nước mặt
 - **EN:** Applications for surface water abstraction and use permits
 
-**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · địa bàn · năm · sản phẩm)
+**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · vùng · sản phẩm)
 
-- **VN:** Quản lý hóa chất nông nghiệp trong chuỗi giá trị thực phẩm · GEF qua ADB · Quảng Ngãi, Đắk Lắk, Gia Lai, Lâm Đồng, Tây Ninh · 2026, đang thực hiện · Đánh giá, hạch toán vốn tự nhiên; cơ sở dữ liệu trực tuyến
-- **EN:** Agrochemical management in agri-food value chains · GEF through ADB · Quang Ngai, Dak Lak, Gia Lai, Lam Dong, Tay Ninh · 2026, ongoing · Natural capital assessment and accounting; online database
+- **VN:** Quản lý hóa chất nông nghiệp trong chuỗi giá trị thực phẩm · GEF qua ADB · 5 tỉnh · đang thực hiện · Đánh giá, hạch toán vốn tự nhiên; cơ sở dữ liệu trực tuyến
+- **EN:** Agrochemical management in agri-food value chains · GEF through ADB · 5 provinces · ongoing · Natural capital assessment and accounting; online database
 
-- **VN:** Hiện đại hóa ngành lâm nghiệp và chống chịu vùng ven biển · WB · Nghệ An, Hà Tĩnh · 2021 · Đánh giá xã hội, hướng dẫn quản lý rừng bền vững cấp xã
-- **EN:** Forestry modernization and coastal resilience · WB · Nghe An, Ha Tinh · 2021 · Social assessment, guidance on commune-level sustainable forest management
+- **VN:** Hiện đại hóa ngành lâm nghiệp và chống chịu vùng ven biển · WB · Bắc Trung Bộ · Đánh giá xã hội, hướng dẫn quản lý rừng bền vững cấp xã
+- **EN:** Forestry modernization and coastal resilience · WB · North Central region · Social assessment, guidance on commune-level sustainable forest management
 
-- **VN:** Khu nghỉ dưỡng và du lịch sinh thái của nhà đầu tư tư nhân · IFC · 2022 · ESIA theo Tiêu chuẩn hoạt động của IFC, phân loại sinh cảnh (PS6)
-- **EN:** Private resort and eco-tourism development · IFC · 2022 · ESIA to IFC Performance Standards, habitat classification (PS6)
+- **VN:** Khu nghỉ dưỡng và du lịch sinh thái của nhà đầu tư tư nhân · IFC · Việt Nam · ESIA theo Tiêu chuẩn hoạt động của IFC, phân loại sinh cảnh (PS6)
+- **EN:** Private resort and eco-tourism development · IFC · Viet Nam · ESIA to IFC Performance Standards, habitat classification (PS6)
 
 ### 3.4 Rủi ro thiên tai và dự án thích ứng với biến đổi khí hậu / Disaster Risk and Climate Change Adaptation Projects
 
@@ -212,16 +206,16 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 - **VN:** Tài liệu môi trường – xã hội cho dự án chống chịu khí hậu, phòng chống thiên tai; đánh giá rủi ro biến đổi khí hậu, khí nhà kính trong ESIA; rủi ro xâm nhập mặn, triều cường, hạn hán, lũ lụt
 - **EN:** Environmental and social documents for climate resilience and disaster risk management projects; climate change risk and greenhouse gas assessment in ESIA; risks of saline intrusion, high tides, drought and flooding
 
-**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · địa bàn · năm · sản phẩm)
+**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · vùng · sản phẩm)
 
-- **VN:** Giảm nhẹ rủi ro thiên tai và tăng cường khả năng chống chịu · UNDP · Gia Lai · 2025 · ESIA cho các hoạt động của dự án
-- **EN:** Disaster risk reduction and resilience · UNDP · Gia Lai · 2025 · ESIA for project activities
+- **VN:** Giảm nhẹ rủi ro thiên tai và tăng cường khả năng chống chịu · UNDP · miền Trung · ESIA cho các hoạt động của dự án
+- **EN:** Disaster risk reduction and resilience · UNDP · Central Viet Nam · ESIA for project activities
 
-- **VN:** Thí điểm Bộ chỉ số đánh giá công tác phòng chống thiên tai cấp tỉnh · Ngân sách nhà nước · Quảng Ninh, Lào Cai, Tuyên Quang, Phú Thọ · 2020
-- **EN:** Pilot of the provincial disaster prevention and control performance index · State budget · Quang Ninh, Lao Cai, Tuyen Quang, Phu Tho · 2020
+- **VN:** Thí điểm Bộ chỉ số đánh giá công tác phòng chống thiên tai cấp tỉnh · Ngân sách nhà nước · 4 tỉnh miền Bắc
+- **EN:** Pilot of the provincial disaster prevention and control performance index · State budget · 4 northern provinces
 
-- **VN:** Hạ tầng chống chịu thiên tai vùng ven biển · WB · 5 tỉnh ven biển phía Bắc · 2026 · ESIA có chương đánh giá rủi ro và thích ứng biến đổi khí hậu
-- **EN:** Coastal hazard resilience infrastructure · WB · 5 northern coastal provinces · 2026 · ESIA with a climate risk and adaptation chapter
+- **VN:** Hạ tầng chống chịu thiên tai vùng ven biển · WB · 5 tỉnh ven biển phía Bắc · ESIA có chương đánh giá rủi ro và thích ứng biến đổi khí hậu
+- **EN:** Coastal hazard resilience infrastructure · WB · 5 northern coastal provinces · ESIA with a climate risk and adaptation chapter
 
 ### 3.5 GIS, phân tích không gian và dữ liệu thực địa số / GIS, Spatial Analysis and Digital Field Data
 
@@ -239,16 +233,16 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 - **VN:** Cơ sở dữ liệu trên nền tảng web
 - **EN:** Web-based databases
 
-**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · địa bàn · năm · sản phẩm)
+**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · vùng · sản phẩm)
 
-- **VN:** Chống lũ, xâm nhập mặn và sạt lở bờ · AFD · Vĩnh Long · 2024 · Bản đồ GIS hành lang tuyến, khảo sát kinh tế – xã hội gắn tọa độ
-- **EN:** Flood, salinity intrusion and riverbank erosion protection · AFD · Vinh Long · 2024 · GIS corridor mapping, geo-referenced socio-economic survey
+- **VN:** Chống lũ, xâm nhập mặn và sạt lở bờ · AFD · Đồng bằng sông Cửu Long · Bản đồ GIS hành lang tuyến, khảo sát kinh tế – xã hội gắn tọa độ
+- **EN:** Flood, salinity intrusion and riverbank erosion protection · AFD · Mekong Delta · GIS corridor mapping, geo-referenced socio-economic survey
 
-- **VN:** Nâng cấp hệ thống thủy lợi thích ứng biến đổi khí hậu · ADB · Ninh Bình (Nam Định cũ) · 2025 · Khảo sát SES, kiểm đếm IOL gắn với dữ liệu địa chính số
-- **EN:** Climate-resilient irrigation upgrading · ADB · Ninh Binh (former Nam Dinh) · 2025 · SES survey and IOL linked to digital cadastral data
+- **VN:** Nâng cấp hệ thống thủy lợi thích ứng biến đổi khí hậu · ADB · Đồng bằng sông Hồng · Khảo sát SES, kiểm đếm IOL gắn với dữ liệu địa chính số
+- **EN:** Climate-resilient irrigation upgrading · ADB · Red River Delta · SES survey and IOL linked to digital cadastral data
 
-- **VN:** Quản lý hóa chất nông nghiệp trong chuỗi giá trị thực phẩm · GEF qua ADB · 05 tỉnh · 2026, đang thực hiện · Cơ sở dữ liệu trực tuyến về vốn tự nhiên
-- **EN:** Agrochemical management in agri-food value chains · GEF through ADB · 5 provinces · 2026, ongoing · Online natural capital database
+- **VN:** Quản lý hóa chất nông nghiệp trong chuỗi giá trị thực phẩm · GEF qua ADB · 5 tỉnh · đang thực hiện · Cơ sở dữ liệu trực tuyến về vốn tự nhiên
+- **EN:** Agrochemical management in agri-food value chains · GEF through ADB · 5 provinces · ongoing · Online natural capital database
 
 ### 3.6 Hỗ trợ thực hiện, tăng cường năng lực và đánh giá hoàn thành dự án / Implementation Support, Capacity Building and Project Completion Evaluation
 
@@ -266,16 +260,16 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026. Mỗi mục có bản tiếng
 - **VN:** Đánh giá hoàn thành dự án, hiệu quả đầu tư (ngoài lĩnh vực môi trường – xã hội)
 - **EN:** Project completion and investment performance evaluation (beyond environmental and social aspects)
 
-**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · địa bàn · năm · sản phẩm)
+**Một số dự án / Selected projects** (lĩnh vực · nguồn vốn · vùng · sản phẩm)
 
-- **VN:** Hỗ trợ đổi mới giáo dục phổ thông · WB · Toàn quốc · 2021 · Đánh giá hiệu quả đầu tư, đánh giá hoàn thành dự án
-- **EN:** Renovation of general education · WB · Nationwide · 2021 · Investment efficiency and project completion evaluation
+- **VN:** Hỗ trợ đổi mới giáo dục phổ thông · WB · Toàn quốc · Đánh giá hiệu quả đầu tư, đánh giá hoàn thành dự án
+- **EN:** Renovation of general education · WB · Nationwide · Investment efficiency and project completion evaluation
 
-- **VN:** Chương trình đô thị xanh · ADB · Thành phố Huế · 2026, đang thực hiện · Giám sát tái định cư độc lập
-- **EN:** Green cities programme · ADB · Hue City · 2026, ongoing · Independent resettlement monitoring
+- **VN:** Chương trình đô thị xanh · ADB · miền Trung · đang thực hiện · Giám sát tái định cư độc lập
+- **EN:** Green cities programme · ADB · Central Viet Nam · ongoing · Independent resettlement monitoring
 
-- **VN:** Quản lý hóa chất nông nghiệp trong chuỗi giá trị thực phẩm · GEF qua ADB · 05 tỉnh · 2026, đang thực hiện · Hỗ trợ thực hiện, tăng cường năng lực
-- **EN:** Agrochemical management in agri-food value chains · GEF through ADB · 5 provinces · 2026, ongoing · Implementation support and capacity building
+- **VN:** Quản lý hóa chất nông nghiệp trong chuỗi giá trị thực phẩm · GEF qua ADB · 5 tỉnh · đang thực hiện · Hỗ trợ thực hiện, tăng cường năng lực
+- **EN:** Agrochemical management in agri-food value chains · GEF through ADB · 5 provinces · ongoing · Implementation support and capacity building
 
 
 ## 4. Khách hàng và đối tác

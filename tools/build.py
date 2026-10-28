@@ -1,5 +1,5 @@
 # Build the static bilingual site for lhcviet.com into docs/ (served by GitHub Pages).
-# Source text: content/noi-dung_v03.md (copied verbatim from the LHC Profile 2026 v45r5).
+# Source text: content/noi-dung_v04.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026).
 # Usage: python3 tools/build.py
 import html, re, shutil
 from pathlib import Path
@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'docs'
 SITE = 'https://lhcviet.com'
 YEAR = '2026'
-md = (ROOT / 'content' / 'noi-dung_v03.md').read_text(encoding='utf-8')
+md = (ROOT / 'content' / 'noi-dung_v04.md').read_text(encoding='utf-8')
 E = html.escape
 
 
@@ -32,14 +32,7 @@ why = pairs(sec('## 6. Vì sao chọn LHC', '## 7.'))
 contact = pairs(sec('## 7. Liên hệ', '## 8.'))
 clients = pairs(sec('## 4. Khách hàng và đối tác', '## 5.'))
 
-STATS = [('122', 'hợp đồng, nhiệm vụ, 2015–2026', 'contracts and assignments, 2015–2026'),
-         ('96', 'dự án, tiểu dự án', 'projects and subprojects'),
-         ('11', 'đối tác phát triển và tổ chức tài chính', 'development partners and financial institutions'),
-         ('34/34', 'tỉnh, thành phố và Lào', 'provinces and cities, plus Laos'),
-         ('77', 'hợp đồng LHC độc lập hoặc đứng đầu liên danh', 'contracts as single firm or JV lead member')]
-# guard: the figures above must match the source text
-for (n, v, e), (sv, se) in zip(STATS, nums_raw):
-    assert sv.startswith(n) and v.split(',')[0].split(' ')[0] in sv and e.split(' ')[0] in se, (n, sv)
+STATS = [(vn.split(' ', 1)[0], vn.split(' ', 1)[1], en.split(' ', 1)[1]) for vn, en in nums_raw]
 
 VALUES = []
 for vn, en in vals_raw:
@@ -58,15 +51,11 @@ for k, (code, tv, te) in enumerate(heads):
     blk = sec(f'### {code} ', f'### {nxt} ' if nxt else '## 4.')
     cap_blk, proj_blk = blk.split('**Một số dự án')
     projs = []
-    for vn, en in pairs(proj_blk):
+    for vn, en in pairs(proj_blk):  # name · financing · region [· status] [· output]
         fv = [x.strip() for x in vn.split('·')]
         fe = [x.strip() for x in en.split('·')]
-        if len(fv) == 4:  # a project line without location, or without output
-            if re.match(r'\d{4}', fv[2]):
-                fv.insert(2, ''); fe.insert(2, '')
-            else:
-                fv.append(''); fe.append('')
-        projs.append((fv, fe))
+        projs.append(tuple(dict(name=f[0], fund=f[1], meta=' · '.join(f[2:-1] if len(f) > 3 else f[2:]),
+                                out=f[-1] if len(f) > 3 else '') for f in (fv, fe)))
     SERVICES.append(dict(n=code[-1], title=(tv, te), caps=pairs(cap_blk), projs=projs,
                          id={'vi': SLUG_VI[k], 'en': SLUG_EN[k]}))
 
@@ -231,10 +220,11 @@ def about(L):
     prs = ''.join(f'<li><h3>{E(x(n))}</h3><p>{E(x(t))}</p></li>' for n, t in PRINCIPLES)
     steps = ''.join(f'<li>{E(x(s))}</li>' for s in STEPS)
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h1>{'LHC Việt Nam' if v else 'LHC Viet Nam'}</h1></div></div>
-<section><div class="wrap two">
- <div class="prose">{''.join(f'<p>{E(x(p))}</p>' for p in (intro[0], intro[1], intro[3]))}</div>
- <div class="prose"><div class="vm"><h2>{'Tầm nhìn' if v else 'Vision'}</h2><p>{E(x(vision))}</p></div><div class="vm"><h2>{'Sứ mệnh' if v else 'Mission'}</h2><p>{E(x(mission))}</p></div></div>
-</div></section>
+<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in (intro[0], intro[1], intro[3]))}</div></div></section>
+<div class="hero"><div class="wrap flush"><div class="stmt">
+ <div><h2 class="kicker">{'Tầm nhìn' if v else 'Vision'}</h2><p class="big">{E(x(vision))}</p></div>
+ <div><h2 class="kicker">{'Sứ mệnh' if v else 'Mission'}</h2><p class="big">{E(x(mission))}</p></div>
+</div></div></div>
 <section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Giá trị cốt lõi' if v else 'Core values'}</p></div>
  <ul class="values">{values}</ul>
@@ -263,18 +253,17 @@ def services(L):
     for s in SERVICES:
         caps = ''.join(f'<li>{E(x(c))}</li>' for c in s['caps'])
         projs = ''
-        for fv, fe in s['projs']:
-            f = fv if v else fe
-            meta = ' · '.join(p for p in (f[2], f[3]) if p)
-            projs += (f'<li class="proj"><span class="pfund">{E(f[1])}</span><span class="pname">{E(f[0])}</span>'
-                      f'<span class="pmeta">{E(meta)}</span>' + (f'<span class="pout">{E(f[4])}</span>' if f[4] else '') + '</li>')
+        for pv, pe in s['projs']:
+            f = pv if v else pe
+            projs += (f'<li class="proj"><span class="pfund">{E(f["fund"])}</span><span class="pname">{E(f["name"])}</span>'
+                      f'<span class="pmeta">{E(f["meta"])}</span>' + (f'<span class="pout">{E(f["out"])}</span>' if f['out'] else '') + '</li>')
         blocks += (f'<section class="svc" id="{s["id"][L]}"><div class="wrap">'
                    f'<div class="shead"><p class="kicker">{"Dịch vụ" if v else "Service"} {s["n"]}</p><h2>{E(x(s["title"]))}</h2></div>'
                    f'<div class="two"><div><h3 class="lbl">{"Năng lực" if v else "Capabilities"}</h3><ul class="caps">{caps}</ul></div>'
                    f'<div><h3 class="lbl">{"Một số dự án" if v else "Selected projects"}</h3><ul class="projs">{projs}</ul></div></div>'
                    f'</div></section>\n')
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Dịch vụ' if v else 'Services'}</p><h1>{'Sáu nhóm dịch vụ' if v else 'Six service lines'}</h1>
- <p class="lede">{'Dự án được nêu theo lĩnh vực, nguồn vốn, địa bàn, năm và sản phẩm.' if v else 'Projects are listed by sector, financing, location, year and outputs.'}</p>
+ <p class="lede">{'Dự án được nêu theo lĩnh vực, nguồn vốn, vùng và sản phẩm.' if v else 'Projects are listed by sector, financing, region and outputs.'}</p>
  <ul class="cards compact">{svc_list(L, me)}</ul></div></div>
 {blocks}'''
     title = 'Dịch vụ' if v else 'Services'
@@ -286,11 +275,10 @@ def services(L):
 def contact_page(L):
     x = lambda p: p[0] if L == 'vi' else p[1]
     v = L == 'vi'
-    maps = 'https://www.google.com/maps/search/?api=1&amp;query=' + '38B+ng%C3%B5+77+Xu%C3%A2n+La%2C+T%C3%A2y+H%E1%BB%93%2C+H%C3%A0+N%E1%BB%99i'
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Liên hệ' if v else 'Contact'}</p><h1>{E(x(COMPANY))}</h1></div></div>
 <section><div class="wrap two">
  <dl class="contact">
-  <dt>{'Trụ sở' if v else 'Head office'}</dt><dd>{E(x(ADDRESS).split(': ', 1)[1])}<br><a href="{maps}" rel="noopener">{'Xem bản đồ' if v else 'View on map'}</a></dd>
+  <dt>{'Trụ sở' if v else 'Head office'}</dt><dd>{E(x(ADDRESS).split(': ', 1)[1])}</dd>
   <dt>{'Điện thoại' if v else 'Telephone'}</dt><dd><a href="tel:{PHONE_TEL}">{PHONE}</a></dd>
   <dt>Email</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd>
  </dl>
