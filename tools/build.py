@@ -378,7 +378,7 @@ def fmt_date(d, L):
 def post_page(p, L):
     v = L == 'vi'
     me = path_of(p['key'], L)
-    body = f'''<div class="phead"><div class="wrap narrow"><p class="kicker">{E(p['topic_vi' if v else 'topic_en'])} · <time datetime="{p['date']}">{fmt_date(p['date'], L)}</time></p>
+    body = f'''<div class="phead"><div class="wrap narrow"><p class="kicker">{E(p['topic_vi' if v else 'topic_en'])}</p>
  <h1>{E(p['title_vi' if v else 'title_en'])}</h1><p class="lede">{E(p['summary_vi' if v else 'summary_en'])}</p></div></div>
 <section><div class="wrap narrow"><article class="post">{md2html(p['vi' if v else 'en'])}
 <h2>{'Nguồn' if v else 'Sources'}</h2>{md2html(p['sources'])}</article>
@@ -388,7 +388,7 @@ def post_page(p, L):
 def updates_page(L, posts):
     v = L == 'vi'
     me = path_of('updates', L)
-    items = ''.join(f'''<li><a class="pcard" href="{rel(me, path_of(p['key'], L))}"><span class="kicker">{E(p['topic_vi' if v else 'topic_en'])} · {fmt_date(p['date'], L)}</span>
+    items = ''.join(f'''<li><a class="pcard" href="{rel(me, path_of(p['key'], L))}"><span class="kicker">{E(p['topic_vi' if v else 'topic_en'])}</span>
  <span class="ptitle">{E(p['title_vi' if v else 'title_en'])}</span><span class="psum">{E(p['summary_vi' if v else 'summary_en'])}</span></a></li>''' for p in posts)
     if not posts:
         items = f"<li class=\"empty\">{'Bài viết đầu tiên sẽ được đăng trong thời gian tới.' if v else 'The first articles will be published soon.'}</li>"
