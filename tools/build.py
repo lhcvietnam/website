@@ -430,6 +430,38 @@ def og_image(dst):
     img.save(dst, optimize=True)
 
 
+# Old web4s URLs (archived 28/10/2026) -> new pages, so links and search results keep working after the switch
+OLD_ARTICLES = ['hop-chuan-bi-du-an-dau-tu-xay-dung-tuyen-duong-tranh-thanh-pho-son-la-tinh-son-la',
+    'hoi-thao-bao-cao-ket-qua-danh-gia-hieu-qua-dau-tu-danh-gia-hoan-thanh-du-an-rgep',
+    'hop-tham-van-cong-dong-dan-cu-lap-bao-cao-danh-gia-tac-dong-moi-truong-cua-du-an-nang-cao-nang-luc-cho-luc-luong-canh-sat-phong-chay-chua-chay-va-cuu-nan-cuu-ho-su-dung-von-vay-oda-nhat-ban',
+    'hoat-dong-giam-sat-tai-dinh-cu-tai-du-an-duong-cao-toc-ben-luc-long-thanh',
+    'hoat-dong-tap-huan-tai-tieu-du-an-do-thi-tinh-gia-tinh-thanh-hoa',
+    'hoat-dong-tham-van-tai-du-an-nang-cap-mang-luoi-giao-thong-tieu-vung-song-me-kong-mo-rong-lan-thu-2-nang-cap-quoc-lo-217-giai-doan-1-tinh-thanh-hoa',
+    'khao-sat-kinh-te-xa-hoi-va-de-xuat-chinh-sach-boi-thuong-ho-tro-va-tai-dinh-cu-phuc-vu-thi-cong-tuyen-ham-cua-du-an-tuyen-duong-sat-do-thi-so-3-thanh-pho-ha-noi',
+    '3-hinh-thuc-tham-van-danh-gia-tac-dong-moi-truong',
+    'thanh-phan-va-so-luong-ho-so-de-nghi-tham-dinh-bao-cao-danh-gia-tac-dong-moi-truong',
+    'trinh-tu-cap-giay-phep-moi-truong',
+    'trinh-tu-thuc-hien-cac-buoc-nop-ho-so-tham-dinh-bao-cao-danh-gia-tac-dong-moi-truong-dtm',
+    'huong-toi-lo-trinh-quoc-gia-ve-giam-thieu-nhua-dung-mot-lan-o-viet-nam-chien-luoc-va-lua-chon-uu-tien',
+    'nhung-diem-chinh-bao-cao-quoc-gia-ve-khi-hau-va-phat-trien-cho-viet-nam',
+    'du-an-ho-chua-nuoc-thuc-luyen-tinh-phu-tho']
+REDIRECTS = {'linh-vuc-hoat-dong': 'dich-vu/', 'du-an': 'dich-vu/', 'danh-sach-du-an-tieu-bieu': 'dich-vu/',
+    'khach-hangnha-tai-tro': 'gioi-thieu/', 'kinh-doanh-dich-vu': 'dich-vu/', 'do-dac-dia-chinh': 'dich-vu/#gis-du-lieu',
+    'tu-van-moi-truong': 'dich-vu/#moi-truong-ats', 'tu-van-tai-dinh-cu': 'dich-vu/#xa-hoi-tai-dinh-cu',
+    'tu-van-xa-hoi-gioi-dtts': 'dich-vu/#xa-hoi-tai-dinh-cu', 'tu-van-sinh-ke': 'dich-vu/#xa-hoi-tai-dinh-cu',
+    'nang-cao-nang-luc': 'dich-vu/#ho-tro-thuc-hien', 'tin-tuc': 'cap-nhat/', 'environmental-and-social-policies': 'lien-ket/',
+    **{a: 'cap-nhat/' for a in OLD_ARTICLES}}
+
+
+def redirect_page(old, new):
+    return f'''<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><title>LHC Việt Nam</title>
+<meta name="robots" content="noindex"><link rel="canonical" href="{SITE}/{new}">
+<meta http-equiv="refresh" content="0; url=../{new}"></head>
+<body><p><a href="../{new}">LHC Việt Nam</a></p></body></html>
+'''
+
+
 def build(out=OUT, include_drafts=False):
     global OUT
     OUT = out
@@ -456,6 +488,11 @@ def build(out=OUT, include_drafts=False):
             d.mkdir(parents=True, exist_ok=True)
             (d / 'index.html').write_text(fn(L), encoding='utf-8')
             urls.append((key, p))
+    for old, new in REDIRECTS.items():
+        if not posts and new.startswith('cap-nhat'):
+            new = ''
+        (OUT / old).mkdir()
+        (OUT / old / 'index.html').write_text(redirect_page(old, new), encoding='utf-8')
     (OUT / '404.html').write_text(NOT_FOUND, encoding='utf-8')
     shutil.copy(ROOT / 'assets' / 'site.css', OUT / 'assets' / 'site.css')
     (OUT / 'assets' / 'favicon.svg').write_text(favicon(), encoding='utf-8')
