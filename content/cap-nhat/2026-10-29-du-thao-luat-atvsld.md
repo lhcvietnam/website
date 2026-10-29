@@ -47,4 +47,3 @@ For projects under construction, training, equipment inspection and accident rep
 ## Nguồn / Sources
 - [Dân chủ và Pháp luật: Tăng cường hiệu lực, hiệu quả hoạt động quản lý nhà nước về an toàn, vệ sinh lao động (21/10/2026)](https://danchuphapluat.vn/tang-cuong-hieu-luc-hieu-qua-hoat-dong-quan-ly-nha-nuoc-ve-an-toan-ve-sinh-lao-dong-10535.html)
 - [Đại biểu Nhân dân: Ủy ban Thường vụ Quốc hội cho ý kiến dự án Luật sửa đổi Luật An toàn, vệ sinh lao động (23/09/2026)](https://daibieunhandan.vn/print/10431442.html)
-- [Cổng Thông tin điện tử Chính phủ: Luật An toàn, vệ sinh lao động số 84/2015/QH13](https://vanban.chinhphu.vn/?pageid=27160&docid=180606)
