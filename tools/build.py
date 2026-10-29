@@ -273,7 +273,6 @@ def services(L):
                    f'<div><h3 class="lbl">{"Một số dự án" if v else "Selected projects"}</h3><ul class="projs">{projs}</ul></div></div>'
                    f'</div></section>\n')
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Dịch vụ' if v else 'Services'}</p><h1>{'Sáu nhóm dịch vụ' if v else 'Six service lines'}</h1>
- <p class="lede">{'Dự án được nêu theo lĩnh vực, nguồn vốn, vùng và sản phẩm.' if v else 'Projects are listed by sector, financing, region and outputs.'}</p>
  <ul class="cards compact">{svc_list(L, me)}</ul></div></div>
 {blocks}'''
     title = 'Dịch vụ' if v else 'Services'
@@ -324,8 +323,7 @@ def links_page(L):
     for gv, ge, items in LINKS:
         lis = ''.join(f'<li><a href="{u}" rel="noopener" target="_blank">{E(nv if v else ne)}</a><span class="host">{E(u.split("/")[2].removeprefix("www."))}</span></li>' for nv, ne, u in items)
         groups += f'<div><h2 class="sub">{E(gv if v else ge)}</h2><ul class="links">{lis}</ul></div>'
-    body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Tài liệu tham khảo' if v else 'Reference'}</p><h1>{'Liên kết hữu ích' if v else 'Useful links'}</h1>
- <p class="lede">{'Trang chính thức của các nhà tài trợ và cơ quan nhà nước mà chúng tôi thường dùng trong công việc. Các liên kết mở trang bên ngoài.' if v else 'Official pages of financiers and government agencies that we use in our work. Links open external sites.'}</p></div></div>
+    body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Tài liệu tham khảo' if v else 'Reference'}</p><h1>{'Liên kết hữu ích' if v else 'Useful links'}</h1></div></div>
 <section><div class="wrap two">{groups}</div></section>'''
     desc = ('Liên kết đến khung chính sách môi trường và xã hội của WB, ADB, IFC, JICA, AFD, UNDP và cơ sở dữ liệu pháp luật Việt Nam.'
             if v else 'Links to the environmental and social frameworks of WB, ADB, IFC, JICA, AFD and UNDP, and to Vietnamese legal databases.')
@@ -394,7 +392,7 @@ def updates_page(L, posts):
     if not posts:
         items = f"<li class=\"empty\">{'Bài viết đầu tiên sẽ được đăng trong thời gian tới.' if v else 'The first articles will be published soon.'}</li>"
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Cập nhật' if v else 'Updates'}</p><h1>{'Cập nhật chuyên môn' if v else 'Professional updates'}</h1>
- <p class="lede">{'Văn bản pháp luật mới, thay đổi chính sách của nhà tài trợ và hoạt động của LHC, kèm nguồn chính thức.' if v else 'New Vietnamese legislation, changes in financier policies and LHC news, with official sources.'}</p></div></div>
+ <p class="lede">{'Văn bản pháp luật mới, thay đổi chính sách của nhà tài trợ và hoạt động của LHC.' if v else 'New Vietnamese legislation, changes in financier policies and LHC news.'}</p></div></div>
 <section><div class="wrap"><ul class="plist">{items}</ul></div></section>'''
     desc = ('Cập nhật pháp luật môi trường, đất đai, tái định cư và chính sách môi trường – xã hội của WB, ADB, JICA.'
             if v else 'Updates on Vietnamese environmental, land and resettlement law and on WB, ADB and JICA environmental and social policies.')
