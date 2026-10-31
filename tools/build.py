@@ -167,10 +167,12 @@ PHOTOS = {
     'consult': ('hop-tham-van-cong-dong', 'Họp tham vấn cộng đồng', 'Community consultation meeting', 1600/672),
     'site': ('cong-truong-xay-dung', 'Kiểm soát ra vào tại công trường xây dựng', 'Access control at a construction site', 1272/704),
     'resettle': ('khu-tai-dinh-cu', 'Khu tái định cư đang xây dựng', 'Resettlement site under construction', 1600/1063),
+    'training': ('hoi-thao-tap-huan', 'Hội thảo tập huấn về quản lý môi trường – xã hội cho cán bộ dự án', 'Environmental and social management training workshop for project staff', 4/3),
+    'team': ('lam-viec-nhom', 'Buổi làm việc của nhóm chuyên gia trong nước và quốc tế', 'Working session of national and international experts', 4/3),
 }
 
 
-SVC_PHOTO = {'1': 'site', '2': 'resettle'}
+SVC_PHOTO = {'1': 'site', '2': 'resettle', '6': 'training'}
 
 
 def photo(key, L, me, cls='photo'):
@@ -269,6 +271,7 @@ def about(L):
   <div><h3 class="sub">{'Năm nguyên tắc' if v else 'Five principles'}</h3><ol class="princ">{prs}</ol></div>
   <div><h3 class="sub">{'Quy trình sáu bước' if v else 'Six-step process'}</h3><ol class="steps">{steps}</ol></div>
  </div>
+ {photo('team', L, path_of('about', L), 'photo svcphoto qphoto')}
 </div></section>'''
     title = 'Giới thiệu' if v else 'About'
     desc = (x(vision)[:155] + '…')

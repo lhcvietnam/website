@@ -155,3 +155,4 @@ footer .fname2{color:var(--band-ink);opacity:.85}
 .photo figcaption{margin-top:8px;font-size:.85rem;color:var(--muted)}
 .svcphoto{margin:0 0 24px}.svcphoto img{aspect-ratio:21/9;object-fit:cover}
 .photo.wide img{aspect-ratio:16/9;object-fit:cover;object-position:50% 60%}
+.svcphoto.qphoto{margin:40px 0 0}
