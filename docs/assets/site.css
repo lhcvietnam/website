@@ -156,3 +156,7 @@ footer .fname2{color:var(--band-ink);opacity:.85}
 .svcphoto{margin:0 0 24px}.svcphoto img{aspect-ratio:21/9;object-fit:cover}
 .photo.wide img{aspect-ratio:16/9;object-fit:cover;object-position:50% 60%}
 .svcphoto.qphoto{margin:40px 0 0}
+.funders{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.funders a{display:block;min-width:72px;text-align:center;padding:10px 16px;border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:6px;background:var(--surface);color:var(--ink);font-weight:700;letter-spacing:.04em;text-decoration:none}
+.funders a:hover,.funders a:focus-visible{border-color:var(--brand);color:var(--brand)}
+.finrest{margin-top:12px;color:var(--muted)}

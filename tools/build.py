@@ -61,6 +61,27 @@ for k, (code, tv, te) in enumerate(heads):
 
 GROUPS, FIN = clients[:4], clients[4]
 
+FUNDERS = {
+    'WB': ('World Bank', 'https://www.worldbank.org'),
+    'ADB': ('Asian Development Bank', 'https://www.adb.org'),
+    'JICA': ('Japan International Cooperation Agency', 'https://www.jica.go.jp/english/'),
+    'IFC': ('International Finance Corporation', 'https://www.ifc.org'),
+    'AFD': ('Agence Française de Développement', 'https://www.afd.fr/en'),
+    'JBIC': ('Japan Bank for International Cooperation', 'https://www.jbic.go.jp/en/'),
+    'IFAD': ('International Fund for Agricultural Development', 'https://www.ifad.org'),
+    'GEF': ('Global Environment Facility', 'https://www.thegef.org'),
+    'UNDP': ('United Nations Development Programme', 'https://www.undp.org'),
+    'EIB': ('European Investment Bank', 'https://www.eib.org'),
+    'KEXIM': ('Export-Import Bank of Korea', 'https://www.koreaexim.go.kr'),
+}
+
+
+def fin_strip(L):
+    names, rest = (FIN[0] if L == 'vi' else FIN[1]).split(';', 1)
+    chips = ''.join(f'<li><a href="{FUNDERS[n][1]}" title="{E(FUNDERS[n][0])}" target="_blank" rel="noopener">{n}</a></li>'
+                    for n in (t.strip() for t in names.split(',')) if n in FUNDERS)
+    return f'<ul class="funders">{chips}</ul><p class="finrest">{E(rest.strip().rstrip(".").capitalize())}.</p>'
+
 princ = [p for p in quality if re.match(r'\d ', p[0])]
 QNAMES = [('Phù hợp yêu cầu', 'Conformity with requirements'), ('Dựa trên bằng chứng', 'Evidence-based'),
           ('Đúng chuyên môn, đúng vai trò', 'Right expertise, right role'), ('Rà soát và kiểm soát', 'Review and control'),
@@ -225,7 +246,7 @@ def home(L):
 <section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Khách hàng và đối tác' if v else 'Clients and partners'}</p><h2>{'Chúng tôi làm việc với' if v else 'We work with'}</h2></div>
  <ul class="groups">{groups}</ul>
- <div class="fin"><h3 class="lbl">{'Nguồn vốn của các dự án' if v else 'Project financing'}</h3><p>{E(x(FIN))}</p></div>
+ <div class="fin"><h3 class="lbl">{'Nguồn vốn của các dự án' if v else 'Project financing'}</h3>{fin_strip(L)}</div>
 </div></section>
 
 <section><div class="wrap">
