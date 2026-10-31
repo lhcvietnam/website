@@ -1,5 +1,5 @@
 # Build the static bilingual site for lhcviet.com into docs/ (served by GitHub Pages).
-# Source text: content/noi-dung_v07.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026).
+# Source text: content/noi-dung_v08.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026; services shortened 31/10/2026).
 # Usage: python3 tools/build.py
 import html, re, shutil
 from pathlib import Path
@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'docs'
 SITE = 'https://lhcviet.com'
 YEAR = '2026'
-md = (ROOT / 'content' / 'noi-dung_v07.md').read_text(encoding='utf-8')
+md = (ROOT / 'content' / 'noi-dung_v08.md').read_text(encoding='utf-8')
 E = html.escape
 
 
