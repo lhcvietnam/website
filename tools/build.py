@@ -1,6 +1,7 @@
 # Build the static bilingual site for lhcviet.com into docs/ (served by GitHub Pages).
 # Source text: content/noi-dung_v08.md (LHC Profile 2026 v45r5, with anh Huy's edits of 28/10/2026; services shortened 31/10/2026).
 # Usage: python3 tools/build.py
+import hashlib
 import html, re, shutil
 from pathlib import Path
 
@@ -60,6 +61,7 @@ for k, (code, tv, te) in enumerate(heads):
                          id={'vi': SLUG_VI[k], 'en': SLUG_EN[k]}))
 
 GROUPS, FIN = clients[:4], clients[4]
+CSS_V = hashlib.md5((ROOT / 'assets' / 'site.css').read_bytes()).hexdigest()[:8]  # cache-busting: browsers reload CSS when it changes
 
 FUNDERS = {
     'WB': ('World Bank', 'https://www.worldbank.org'),
@@ -157,7 +159,7 @@ def page(key, L, title, desc, body):
 <link rel="icon" href="{r('assets/favicon.svg')}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,500;7..72,600&amp;display=swap">
-<link rel="stylesheet" href="{r('assets/site.css')}">
+<link rel="stylesheet" href="{r('assets/site.css')}?v={CSS_V}">
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "946c4e495cce4109bbbc216c7077181c"}}'></script>
 </head>
 <body>
@@ -447,7 +449,7 @@ def updates_page(L, posts):
 NOT_FOUND = '''<!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Không tìm thấy trang | Page not found</title><meta name="robots" content="noindex">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"></head>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css?v={CSS_V}"></head>
 <body><main id="main"><div class="phead"><div class="wrap">
 <p class="kicker">404</p><h1>Không tìm thấy trang</h1><p class="lede" lang="en">Page not found</p>
 <p class="cta"><a class="btn" href="/">Trang chủ</a><a class="btn ghost" href="/en/" lang="en">Home (English)</a></p>
@@ -537,7 +539,7 @@ def build(out=OUT, include_drafts=False):
             new = ''
         (OUT / old).mkdir()
         (OUT / old / 'index.html').write_text(redirect_page(old, new), encoding='utf-8')
-    (OUT / '404.html').write_text(NOT_FOUND, encoding='utf-8')
+    (OUT / '404.html').write_text(NOT_FOUND.replace('{CSS_V}', CSS_V), encoding='utf-8')
     shutil.copy(ROOT / 'assets' / 'site.css', OUT / 'assets' / 'site.css')
     shutil.copytree(ROOT / 'assets' / 'photos', OUT / 'assets' / 'photos')
     (OUT / 'assets' / 'favicon.svg').write_text(favicon(), encoding='utf-8')
