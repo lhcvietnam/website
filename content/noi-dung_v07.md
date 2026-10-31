@@ -265,8 +265,8 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh, l�
 - **VN:** Hỗ trợ đổi mới giáo dục phổ thông · WB · Toàn quốc · Đánh giá hiệu quả đầu tư, đánh giá hoàn thành dự án
 - **EN:** Renovation of general education · WB · Nationwide · Investment efficiency and project completion evaluation
 
-- **VN:** Chương trình đô thị xanh · ADB · miền Trung · đang thực hiện · Giám sát tái định cư độc lập
-- **EN:** Green cities programme · ADB · Central Viet Nam · ongoing · Independent resettlement monitoring
+- **VN:** Cầu dân sinh và quản lý tài sản đường địa phương · WB · Nhiều tỉnh, thành phố · Đào tạo, tăng cường năng lực quản lý môi trường – xã hội cho các ban quản lý dự án; bộ tài liệu hướng dẫn
+- **EN:** Local roads and bridges asset management · WB · Multiple provinces · Environmental and social management training and capacity building for PMUs; guidance materials
 
 - **VN:** Quản lý hóa chất nông nghiệp trong chuỗi giá trị thực phẩm · GEF qua ADB · 5 tỉnh · đang thực hiện · Hỗ trợ thực hiện, tăng cường năng lực
 - **EN:** Agrochemical management in agri-food value chains · GEF through ADB · 5 provinces · ongoing · Implementation support and capacity building
