@@ -509,7 +509,7 @@ def redirect_page(old, new):
 def build(out=OUT, include_drafts=False):
     global OUT
     OUT = out
-    cname = (OUT / 'CNAME').read_text() if (OUT / 'CNAME').exists() else None  # written by GitHub Pages settings
+    cname = 'lhcviet.com\n'  # custom domain for GitHub Pages; never drop it (a lost CNAME takes the site down)
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / 'assets').mkdir(parents=True)
