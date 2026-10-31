@@ -162,6 +162,25 @@ def page(key, L, title, desc, body):
 '''
 
 
+PHOTOS = {
+    'field': ('thuc-dia-khao-sat', 'Cán bộ LHC khảo sát, phỏng vấn người dân tại hiện trường', 'LHC staff interviewing a local resident during a field survey', 4/3),
+    'consult': ('hop-tham-van-cong-dong', 'Họp tham vấn cộng đồng', 'Community consultation meeting', 1600/672),
+    'site': ('cong-truong-xay-dung', 'Kiểm soát ra vào tại công trường xây dựng', 'Access control at a construction site', 1272/704),
+    'resettle': ('khu-tai-dinh-cu', 'Khu tái định cư đang xây dựng', 'Resettlement site under construction', 1600/1063),
+}
+
+
+SVC_PHOTO = {'1': 'site', '2': 'resettle'}
+
+
+def photo(key, L, me, cls='photo'):
+    n, av, ae, ratio = PHOTOS[key]
+    alt = av if L == 'vi' else ae
+    a = rel(me, f'assets/photos/{n}-800.jpg'); b = rel(me, f'assets/photos/{n}-1600.jpg')
+    return (f'<figure class="{cls}"><img src="{a}" srcset="{a} 800w, {b} 1600w" sizes="(min-width:1120px) 1072px, 100vw" '
+            f'width="1600" height="{round(1600/ratio)}" alt="{E(alt)}" loading="lazy" decoding="async"><figcaption>{E(alt)}</figcaption></figure>')
+
+
 def svc_list(L, me):
     x = lambda p: p[0] if L == 'vi' else p[1]
     target = path_of('services', L)
@@ -188,7 +207,8 @@ def home(L):
 <section><div class="wrap two">
  <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h2>{'Hơn mười năm tư vấn cho dự án đầu tư công và tư nhân' if v else 'More than ten years advising public and private investment projects'}</h2></div>
  <div class="prose"><p>{E(x(intro[0]))}</p><p><a class="more" href="{rel(me, path_of('about', L))}">{'Tìm hiểu về LHC' if v else 'More about LHC'}</a></p></div>
-</div></section>
+</div>
+<div class="wrap">{photo('field', L, me, 'photo wide')}</div></section>
 
 <section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Ba trụ cột' if v else 'Three pillars'}</p></div>
@@ -229,7 +249,7 @@ def about(L):
     prs = ''.join(f'<li><h3>{E(x(n))}</h3><p>{E(x(t))}</p></li>' for n, t in PRINCIPLES)
     steps = ''.join(f'<li>{E(x(s))}</li>' for s in STEPS)
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h1>{'LHC Việt Nam' if v else 'LHC Viet Nam'}</h1></div></div>
-<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div></div></section>
+<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div>{photo('consult', L, path_of('about', L))}</div></section>
 <section class="tint" id="{'tam-nhin' if v else 'vision'}"><div class="wrap">
  <div class="shead"><p class="kicker">{'Tầm nhìn · Sứ mệnh · Giá trị cốt lõi' if v else 'Vision · Mission · Core values'}</p><h2>{'Mỗi dự án là một cam kết.' if v else 'Every project is a commitment.'}</h2></div>
  <div class="vmrow">
@@ -269,6 +289,7 @@ def services(L):
                       f'<span class="pmeta">{E(f["meta"])}</span>' + (f'<span class="pout">{E(f["out"])}</span>' if f['out'] else '') + '</li>')
         blocks += (f'<section class="svc" id="{s["id"][L]}"><div class="wrap">'
                    f'<div class="shead"><p class="kicker">{"Dịch vụ" if v else "Service"} {s["n"]}</p><h2>{E(x(s["title"]))}</h2></div>'
+                   + (photo(SVC_PHOTO[str(s["n"]).lstrip("0")], L, me, 'photo svcphoto') if str(s["n"]).lstrip("0") in SVC_PHOTO else '') +
                    f'<div class="two"><div><h3 class="lbl">{"Năng lực" if v else "Capabilities"}</h3><ul class="caps">{caps}</ul></div>'
                    f'<div><h3 class="lbl">{"Một số dự án" if v else "Selected projects"}</h3><ul class="projs">{projs}</ul></div></div>'
                    f'</div></section>\n')
@@ -494,6 +515,7 @@ def build(out=OUT, include_drafts=False):
         (OUT / old / 'index.html').write_text(redirect_page(old, new), encoding='utf-8')
     (OUT / '404.html').write_text(NOT_FOUND, encoding='utf-8')
     shutil.copy(ROOT / 'assets' / 'site.css', OUT / 'assets' / 'site.css')
+    shutil.copytree(ROOT / 'assets' / 'photos', OUT / 'assets' / 'photos')
     (OUT / 'assets' / 'favicon.svg').write_text(favicon(), encoding='utf-8')
     og_image(OUT / 'assets' / 'og.png')
     (OUT / '.nojekyll').write_text('')

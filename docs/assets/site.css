@@ -151,3 +151,7 @@ section[id]{scroll-margin-top:72px}
 }
 footer .fname2{color:var(--band-ink);opacity:.85}
 @media (max-width:640px){footer .fright{order:3}}
+.photo{margin:32px 0 0}.photo img{display:block;width:100%;height:auto;border-radius:6px;background:var(--tint)}
+.photo figcaption{margin-top:8px;font-size:.85rem;color:var(--muted)}
+.svcphoto{margin:0 0 24px}.svcphoto img{aspect-ratio:21/9;object-fit:cover}
+.photo.wide img{aspect-ratio:16/9;object-fit:cover;object-position:50% 60%}
