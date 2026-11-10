@@ -108,6 +108,7 @@ PAGES = {  # key: (vi path, en path, vi nav label, en nav label)
     'contact': ('lien-he/', 'en/contact/', 'Liên hệ', 'Contact'),
     'updates': ('cap-nhat/', 'en/updates/', 'Cập nhật chuyên môn', 'Updates'),
     'links': ('lien-ket/', 'en/links/', 'Liên kết hữu ích', 'Useful links'),
+    'terms': ('dieu-khoan-su-dung/', 'en/terms/', 'Điều khoản sử dụng', 'Terms of use'),
 }
 NAV = ['about', 'services', 'updates', 'contact']
 FOOT = ['about', 'services', 'updates', 'links', 'contact']
@@ -178,7 +179,7 @@ def page(key, L, title, desc, body):
  <p>{E(x(ADDRESS))}</p>
  <p><a href="tel:{PHONE_TEL}">{PHONE}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
  <nav class="fcol fnav" aria-label="{'Liên kết chân trang' if L == 'vi' else 'Footer links'}">{''.join(f'<a href="{r(path_of(k, L))}">{E(PAGES[k][2 if L == 'vi' else 3])}</a>' for k in FOOT)}</nav>
- <div class="fcol fright"><p>Quality Earns Trust</p><p>© {YEAR} LHC {'Việt Nam' if L == 'vi' else 'Viet Nam'}</p></div>
+ <div class="fcol fright"><p>Quality Earns Trust</p><p class="fcopy">© {YEAR} {E(x(COMPANY).split(' (')[0])}. {'Bảo lưu mọi quyền.' if L == 'vi' else 'All rights reserved.'}</p><p><a href="{r(path_of('terms', L))}">{'Điều khoản sử dụng' if L == 'vi' else 'Terms of use'}</a></p></div>
 </div></footer>
 </body>
 </html>
@@ -377,6 +378,19 @@ def links_page(L):
     return page('links', L, 'Liên kết hữu ích' if v else 'Useful links', desc, body)
 
 
+TERMS_VI, TERMS_EN = re.sub(r'<!--.*?-->', '', (ROOT / 'content' / 'dieu-khoan.md').read_text(encoding='utf-8'), flags=re.S).split('=== EN ===')
+
+
+def terms_page(L):
+    v = L == 'vi'
+    title = 'Điều khoản sử dụng' if v else 'Terms of use'
+    body = f'''<div class="phead"><div class="wrap narrow"><p class="kicker">{'Bản quyền' if v else 'Copyright'}</p><h1>{title}</h1></div></div>
+<section><div class="wrap narrow"><article class="post">{md2html(TERMS_VI if v else TERMS_EN)}</article></div></section>'''
+    desc = ('Điều khoản sử dụng website lhcviet.com: quyền sở hữu nội dung, logo, hình ảnh của LHC Việt Nam, cách trích dẫn và báo vi phạm.'
+            if v else 'Terms of use of lhcviet.com: ownership of LHC Viet Nam content, logo and images, how to quote, and how to report misuse.')
+    return page('terms', L, title, desc, body)
+
+
 # ---------- updates (posts) ----------
 def inline(t):
     t = E(t, quote=False)
@@ -517,7 +531,7 @@ def build(out=OUT, include_drafts=False):
     (OUT / 'assets').mkdir(parents=True)
     posts = load_posts(include_drafts)
     builders = {'home': home, 'about': about, 'services': services, 'updates': lambda L: updates_page(L, posts),
-                'links': links_page, 'contact': contact_page}
+                'links': links_page, 'contact': contact_page, 'terms': terms_page}
     for p in posts:
         builders[p['key']] = lambda L, p=p: post_page(p, L)
     if not posts:  # no published article yet: keep the section out of the site
