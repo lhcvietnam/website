@@ -112,13 +112,12 @@ PAGES = {  # key: (vi path, en path, vi nav label, en nav label)
     'contact': ('lien-he/', 'en/contact/', 'Liên hệ', 'Contact'),
     'updates': ('cap-nhat/', 'en/updates/', 'Cập nhật chuyên môn', 'Updates'),
     'links': ('lien-ket/', 'en/links/', 'Liên kết hữu ích', 'Useful links'),
-    'projects': ('du-an/', 'en/projects/', 'Dự án', 'Projects'),  # also holds the field photos (old /hinh-anh/ redirects here)
+    'photos': ('hinh-anh/', 'en/photos/', 'Hình ảnh hiện trường', 'Field photos'),
     'terms': ('dieu-khoan-su-dung/', 'en/terms/', 'Điều khoản sử dụng', 'Terms of use'),
 }
-NAV = ['about', 'services', 'projects', 'updates', 'contact']
-FOOT = ['about', 'services', 'projects', 'updates', 'links', 'contact']
-NAV_LABEL = {'about': ('Giới thiệu', 'About'), 'services': ('Dịch vụ', 'Services'), 'projects': ('Dự án', 'Projects'),
-             'updates': ('Cập nhật', 'Updates'), 'contact': ('Liên hệ', 'Contact')}
+NAV = ['about', 'services', 'updates', 'contact']
+FOOT = ['about', 'services', 'photos', 'updates', 'links', 'contact']
+NAV_LABEL = {'about': ('Giới thiệu', 'About'), 'services': ('Dịch vụ', 'Services'), 'updates': ('Cập nhật', 'Updates'), 'contact': ('Liên hệ', 'Contact')}
 
 
 def path_of(key, L):
@@ -169,10 +168,10 @@ def page(key, L, title, desc, body):
 <meta property="og:url" content="{SITE}/{me}">
 <meta property="og:image" content="{SITE}/assets/og.png">
 <meta property="og:locale" content="{'vi_VN' if L == 'vi' else 'en_US'}">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0d3b2a">
 <link rel="icon" href="{r('assets/favicon.svg')}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,500;7..72,600&amp;display=swap">
 <link rel="stylesheet" href="{r('assets/site.css')}?v={CSS_V}">
 {ORG_LD if key == 'home' else ''}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "946c4e495cce4109bbbc216c7077181c"}}'></script>
 </head>
@@ -237,8 +236,8 @@ PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(a
 GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p01']  # newest first, undated last; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
 
 
-HOME_FIELD = ['p42', 'p05', 'p06']  # home 'From the field' band: boat survey, riverside houses, urban canal
-SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p12'}
+HOME_STRIP = ['p42', 'p05', 'p06']  # home: three field photos under the service cards (anh Huy 16/11/2026: original design, more photos)
+SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p12'}  # 6: Tam Ky, Quang Nam (anh Huy 16/11/2026)
 
 
 def img_tag(key, L, me, sizes='(min-width:1120px) 1072px, 100vw', lazy=True):
@@ -266,97 +265,53 @@ def svc_list(L, me):
                    f'<span class="stitle">{E(x(s["title"]))}</span></a></li>' for s in SERVICES)
 
 
-def svc_photo_cards(L, me):  # home: six service cards, each with a small field photo
-    x = lambda p: p[0] if L == 'vi' else p[1]
-    target = path_of('services', L)
-    return ''.join(f'<li><a class="scard" href="{rel(me, target)}#{s["id"][L]}">'
-                   f'{img_tag(SVC_PHOTO[s["n"]], L, me, "(min-width:1120px) 352px, (min-width:720px) 33vw, 100vw")}'
-                   f'<span class="sbody"><span class="scode">{s["n"]}</span><span class="stitle">{E(x(s["title"]))}</span></span></a></li>'
-                   for s in SERVICES)
-
-
-SVC_SHORT = [('Môi trường, an toàn lao động', 'Environment, OHS'), ('Xã hội, tái định cư', 'Social, resettlement'),
-             ('Vốn tự nhiên', 'Natural capital'), ('Thiên tai, khí hậu', 'Disaster, climate'),
-             ('GIS, dữ liệu', 'GIS, data'), ('Hỗ trợ thực hiện', 'Implementation support')]
-FUND_KEYS = ['WB', 'ADB', 'AFD', 'IFC', 'JICA', 'JBIC', 'GEF', 'UNDP', 'EIB', 'NSNN']
-FUND_LABEL = {'NSNN': ('Ngân sách nhà nước', 'State budget')}
-
-
-def fund_keys(fund):  # 'GEF qua ADB' -> GEF ADB; 'Ngân sách nhà nước' -> NSNN
-    if 'Ngân sách' in fund or 'budget' in fund:
-        return ['NSNN']
-    return [t for t in re.split(r',\s*|\s+qua\s+|\s+through\s+', fund) if t]
-
-
-ALL_PROJECTS = []  # (service index, vi card, en card), newest first by end year
-for i, s in enumerate(SERVICES):
-    for pv, pe in s['projs']:
-        ALL_PROJECTS.append((i, pv, pe))
-ALL_PROJECTS.sort(key=lambda t: -int(re.findall(r'\d{4}', t[1]['year'])[-1]) if t[1]['year'] else 0)
-FEATURED = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 1), (5, 2)]  # (service, project) shown on the home page
-
-
-def proj_card(i, f, L, me, filt=False):
-    v = L == 'vi'
-    s = SERVICES[i]
-    data = f' data-s="{s["n"]}" data-f="{" ".join(fund_keys(f["fund"]))}"' if filt else ''
-    return (f'<li class="pcard"{data}><p class="ptop"><span class="pfund">{E(f["fund"])}</span>'
-            + (f'<span class="pyear">{E(f["year"])}</span>' if f['year'] else '') + '</p>'
-            f'<h3 class="pname">{E(f["name"])}</h3>'
-            + (f'<p class="pmeta">{E(f["meta"])}</p>' if f['meta'] else '')
-            + (f'<p class="pout">{E(f["out"])}</p>' if f['out'] else '')
-            + (f'<p class="prole">{"Vai trò của LHC" if v else "LHC role"}: {E(f["role"])}</p>' if f['role'] else '')
-            + f'<a class="psvc" href="{rel(me, path_of("services", L))}#{s["id"][L]}">{"Dịch vụ" if v else "Service"} {s["n"]} · {E(SVC_SHORT[i][0 if v else 1])}</a></li>')
-
-
-def home(L):  # PA4 "Quốc tế" (16/11/2026): typographic hero, one wide landscape, rule-separated lists, three field photos
+def home(L):
     me = path_of('home', L)
     x = lambda p: p[0] if L == 'vi' else p[1]
     v = L == 'vi'
+    stats = ''.join(f'<div class="stat"><b>{n}</b><p>{E(a if v else b)}</p></div>' for n, a, b in STATS)
+    pillars = ''.join(f'<article class="pillar"><h3>{E(x(n))}</h3><p>{E(x(t))}</p></article>' for n, t in PILLARS)
     groups = ''.join(f'<li>{E(x(g))}</li>' for g in GROUPS)
-    feat = ''.join(proj_card(i, SERVICES[i]['projs'][j][0 if v else 1], L, me) for i, j in FEATURED)
-    hero = photo('n01', L, me, 'i-photo', '(min-width:1240px) 1160px, 100vw').replace('<figcaption>', '<figcaption hidden>').replace(' loading="lazy"', ' fetchpriority="high"')
-    stats = ''.join(f'<div><b>{n}</b><span>{E(a if v else b)}</span></div>' for n, a, b in STATS)
-    svc = ''.join(f'<li><a href="{rel(me, path_of("services", L))}#{s["id"][L]}"><span class="n">{int(s["n"]):02d}</span>'
-                  f'<span class="t">{E(x(s["title"]))}</span><span class="ar" aria-hidden="true">→</span></a></li>' for s in SERVICES)
-    field = ''.join(f'<li>{photo(k, L, me, "", "(min-width:1240px) 370px, (min-width:760px) 31vw, 78vw")}</li>' for k in HOME_FIELD)
-    body = f'''<div class="i-hero"><div class="wrap">
- <p class="kicker">{'LHC Việt Nam · Hà Nội, từ 2014' if v else 'LHC Viet Nam · Ha Noi, since 2014'}</p>
- <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, social and natural capital advisory'}</h1>
- <div class="i-sub"><p class="i-pil">{' · '.join(['Môi trường', 'Con người', 'Vốn tự nhiên'] if v else ['Environment', 'People', 'Natural Capital'])}</p>
- <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="more" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p></div>
+    whys = ''.join(f'<li><h3>{E(x(h))}</h3><p>{E(x(t))}</p></li>' for h, t in WHY)
+    body = f'''<div class="hero"><div class="wrap">
+ <p class="kicker">{'LHC Việt Nam · Thành lập 2014, Hà Nội' if v else 'LHC Viet Nam · Established 2014, Ha Noi'}</p>
+ <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, Social &amp; Natural Capital Advisory'}</h1>
+ <p class="pillars-line">{'Môi trường · Con người · Vốn tự nhiên' if v else 'Environment · People · Natural Capital'}</p>
+ <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="btn ghost" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p>
+ <div class="stats">{stats}</div>
 </div></div>
-<div class="wrap">{hero}<div class="i-stats">{stats}</div></div>
 
-<section><div class="wrap i-split">
- <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p></div>
- <div><p class="i-lead">{E(x(intro[0]))}</p><p><a class="more" href="{rel(me, path_of('about', L))}">{'Tìm hiểu về LHC' if v else 'More about LHC'}</a></p></div>
+<section><div class="wrap two">
+ <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h2>{'Hơn mười năm tư vấn cho dự án đầu tư công và tư nhân' if v else 'More than ten years advising public and private investment projects'}</h2></div>
+ <div class="prose"><p>{E(x(intro[0]))}</p><p><a class="more" href="{rel(me, path_of('about', L))}">{'Tìm hiểu về LHC' if v else 'More about LHC'}</a></p></div>
+</div>
+<div class="wrap">{photo('field', L, me, 'photo wide')}<p class="more-photos"><a class="more" href="{rel(me, path_of('photos', L))}">{'Hình ảnh hiện trường' if v else 'Field photos'}</a></p></div></section>
+
+<section class="tint"><div class="wrap">
+ <div class="shead"><p class="kicker">{'Ba trụ cột' if v else 'Three pillars'}</p></div>
+ <div class="pillars">{pillars}</div>
 </div></section>
 
-<section class="soft"><div class="wrap i-split">
+<section><div class="wrap">
  <div class="shead"><p class="kicker">{'Dịch vụ' if v else 'Services'}</p><h2>{'Sáu nhóm dịch vụ' if v else 'Six service lines'}</h2></div>
- <ol class="i-svc">{svc}</ol>
+ <ul class="cards">{svc_list(L, me)}</ul>
+ <div class="gallery hstrip">{''.join(photo(k, L, me, 'photo gitem', '(min-width:1120px) 352px, (min-width:720px) 33vw, 100vw') for k in HOME_STRIP)}</div>
+ <p class="more-photos"><a class="more" href="{rel(me, path_of('photos', L))}">{'Xem thêm hình ảnh hiện trường' if v else 'More field photos'}</a></p>
+</div></section>
+
+<section class="tint"><div class="wrap">
+ <div class="shead"><p class="kicker">{'Khách hàng và đối tác' if v else 'Clients and partners'}</p><h2>{'Chúng tôi làm việc với' if v else 'We work with'}</h2></div>
+ <ul class="groups">{groups}</ul>
+ <div class="fin"><h3 class="lbl">{'Nguồn vốn của các dự án' if v else 'Project financing'}</h3>{fin_strip(L)}</div>
 </div></section>
 
 <section><div class="wrap">
- <div class="shead"><p class="kicker">{'Từ hiện trường' if v else 'From the field'}</p><h2>{'Khảo sát, tham vấn và giám sát tại địa bàn dự án' if v else 'Surveys, consultation and monitoring on site'}</h2></div>
- <ul class="i-field">{field}</ul>
- <p class="cta" style="margin-top:40px"><a class="more" href="{rel(me, path_of('projects', L))}#{'hinh-anh' if v else 'photos'}">{'Xem thêm hình ảnh' if v else 'More photos'}</a></p>
+ <div class="shead"><p class="kicker">{'Vì sao chọn LHC' if v else 'Why LHC'}</p><h2>{E(x(why[0]))}</h2></div>
+ <ul class="why">{whys}</ul>
 </div></section>
 
-<section><div class="wrap">
- <div class="shead"><p class="kicker">{'Dự án tiêu biểu' if v else 'Selected projects'}</p><h2>{'Một số dự án gần đây' if v else 'Recent work'}</h2></div>
- <ul class="pgrid">{feat}</ul>
- <p class="cta"><a class="btn ghost" href="{rel(me, path_of('projects', L))}">{'Xem tất cả dự án' if v else 'All projects'}</a></p>
-</div></section>
-
-<section class="soft"><div class="wrap i-split">
- <div class="shead"><p class="kicker">{'Khách hàng và nguồn vốn' if v else 'Clients and financing'}</p><h2>{'Chúng tôi làm việc với' if v else 'We work with'}</h2></div>
- <div><ul class="groups">{groups}</ul>
- <div class="fin"><h3 class="lbl">{'Nguồn vốn của các dự án' if v else 'Project financing'}</h3>{fin_strip(L)}</div></div>
-</div></section>
-
-<section class="i-dark"><div class="wrap"><p class="kicker">{'Cam kết' if v else 'Our commitment'}</p><p class="credo">{E(x(CREDO))}</p>
+<section class="band"><div class="wrap">
+ <p class="credo">{E(x(CREDO))}</p>
  <p class="cta"><a class="btn" href="{rel(me, path_of('contact', L))}">{'Liên hệ với chúng tôi' if v else 'Get in touch'}</a></p>
 </div></section>'''
     title = 'LHC Việt Nam · Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'LHC Viet Nam · Environmental, Social & Natural Capital Advisory'
@@ -372,9 +327,8 @@ def about(L):
     pillars = ''.join(f'<article class="pillar"><h3>{E(x(n))}</h3><p>{E(x(t))}</p></article>' for n, t in PILLARS)
     prs = ''.join(f'<li><h3>{E(x(n))}</h3><p>{E(x(t))}</p></li>' for n, t in PRINCIPLES)
     steps = ''.join(f'<li>{E(x(s))}</li>' for s in STEPS)
-    whys = ''.join(f'<li><h3>{E(x(h))}</h3><p>{E(x(t))}</p></li>' for h, t in WHY)
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h1>{'LHC Việt Nam' if v else 'LHC Viet Nam'}</h1></div></div>
-<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div></div></section>
+<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div>{photo('consult', L, path_of('about', L))}</div></section>
 <section class="tint" id="{'tam-nhin' if v else 'vision'}"><div class="wrap">
  <div class="shead"><p class="kicker">{'Tầm nhìn · Sứ mệnh · Giá trị cốt lõi' if v else 'Vision · Mission · Core values'}</p><h2>{'Mỗi dự án là một cam kết.' if v else 'Every project is a commitment.'}</h2></div>
  <div class="vmrow">
@@ -389,16 +343,13 @@ def about(L):
  <div class="pillars">{pillars}</div>
  {photo('p10', L, path_of('about', L), 'photo svcphoto fp ptop', '(min-width:920px) 880px, 100vw')}
 </div></section>
-<section id="{'vi-sao-chon-lhc' if v else 'why-lhc'}"><div class="wrap">
- <div class="shead"><p class="kicker">{'Vì sao chọn LHC' if v else 'Why LHC'}</p><h2>{E(x(why[0]))}</h2></div>
- <ul class="why">{whys}</ul>
-</div></section>
 <section class="tint" id="{'chat-luong' if v else 'quality'}"><div class="wrap">
  <div class="shead"><p class="kicker">{'Quản lý chất lượng' if v else 'Quality management'}</p><h2>{E(x(quality[0]))}</h2><p class="lede">{E(x(quality[1]))}</p></div>
  <div class="two">
   <div><h3 class="sub">{'Năm nguyên tắc' if v else 'Five principles'}</h3><ol class="princ">{prs}</ol></div>
   <div><h3 class="sub">{'Quy trình sáu bước' if v else 'Six-step process'}</h3><ol class="steps">{steps}</ol></div>
  </div>
+ {photo('team', L, path_of('about', L), 'photo svcphoto qphoto')}
 </div></section>'''
     title = 'Giới thiệu' if v else 'About'
     desc = (x(vision)[:155] + '…')
@@ -483,46 +434,16 @@ def links_page(L):
     return page('links', L, 'Liên kết hữu ích' if v else 'Useful links', desc, body)
 
 
-FILTER_JS = '''<script>
-(()=>{const bar=document.querySelector('.pfilters'),g=document.querySelector('.pgrid.all');if(!bar||!g)return;bar.hidden=false;
-let s='',f='';const n=document.querySelector('.pcount'),none=document.querySelector('.pnone');
-bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
-if(b.dataset.t==='s')s=b.dataset.v;else f=b.dataset.v;
-b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-let k=0;g.querySelectorAll('.pcard').forEach(c=>{const ok=(!s||c.dataset.s===s)&&(!f||c.dataset.f.split(' ').includes(f));c.hidden=!ok;k+=ok});
-n.textContent=k;none.hidden=k>0});})();
-</script>'''
-
-
-def projects_page(L):
+def photos_page(L):
     v = L == 'vi'
-    me = path_of('projects', L)
-    cards = ''.join(proj_card(i, pv if v else pe, L, me, filt=True) for i, pv, pe in ALL_PROJECTS)
-    used = {k for _, pv, _ in ALL_PROJECTS for k in fund_keys(pv['fund'])}
-    btn = lambda t, val, lab, on=False: f'<button type="button" data-t="{t}" data-v="{val}" aria-pressed="{"true" if on else "false"}">{E(lab)}</button>'
-    sbtn = btn('s', '', 'Tất cả' if v else 'All', True) + ''.join(btn('s', s['n'], SVC_SHORT[i][0 if v else 1]) for i, s in enumerate(SERVICES))
-    fbtn = btn('f', '', 'Tất cả' if v else 'All', True) + ''.join(btn('f', k, FUND_LABEL.get(k, (k, k))[0 if v else 1]) for k in FUND_KEYS if k in used)
+    me = path_of('photos', L)
     items = ''.join(photo(k, L, me, 'photo gitem', HALF) for k in GALLERY)
-    body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Dự án' if v else 'Projects'}</p><h1>{'Dự án tiêu biểu' if v else 'Selected projects'}</h1>
- <p class="lede">{'Một số dự án tiêu biểu LHC Việt Nam đã và đang thực hiện, kèm năm, nguồn vốn và vai trò của LHC. Tên chủ đầu tư và giá trị hợp đồng không được nêu.' if v else 'A selection of LHC Viet Nam assignments, with the year, source of financing and LHC\'s role. Client names and contract values are not disclosed.'}</p></div></div>
-<section><div class="wrap">
- <div class="pfilters" hidden>
-  <div class="fgroup"><p class="lbl">{'Lĩnh vực' if v else 'Service line'}</p><div class="fbtns">{sbtn}</div></div>
-  <div class="fgroup"><p class="lbl">{'Nguồn vốn' if v else 'Financing'}</p><div class="fbtns">{fbtn}</div></div>
-  <p class="pshow" aria-live="polite">{'Đang hiển thị' if v else 'Showing'} <span class="pcount">{len(ALL_PROJECTS)}</span> {'dự án' if v else 'projects'}</p>
- </div>
- <ul class="pgrid all">{cards}</ul>
- <p class="pnone" hidden>{'Không có dự án phù hợp với bộ lọc.' if v else 'No project matches these filters.'}</p>
-</div></section>
-<section class="tint" id="{'hinh-anh' if v else 'photos'}"><div class="wrap">
- <div class="shead"><p class="kicker">{'Hình ảnh' if v else 'Photos'}</p><h2>{'Hình ảnh hiện trường' if v else 'Field photos'}</h2>
- <p class="lede">{'Một số hình ảnh LHC Việt Nam chụp trong quá trình khảo sát, tham vấn và giám sát dự án. Khuôn mặt và thông tin nhận dạng đã được làm mờ.' if v else 'A selection of photos taken by LHC Viet Nam during project surveys, consultations and monitoring. Faces and identifying details have been blurred.'}</p></div>
- <div class="gallery">{items}</div>
-</div></section>
-{FILTER_JS}'''
-    desc = ('Dự án tiêu biểu của LHC Việt Nam về môi trường, xã hội, tái định cư, vốn tự nhiên và khí hậu, kèm hình ảnh hiện trường; lọc theo lĩnh vực và nguồn vốn.'
-            if v else 'Selected LHC Viet Nam projects in environment, social, resettlement, natural capital and climate, with field photos; filter by service line and financing.')
-    return page('projects', L, 'Dự án' if v else 'Projects', desc, body)
+    body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Hình ảnh' if v else 'Photos'}</p><h1>{'Hình ảnh hiện trường' if v else 'Field photos'}</h1>
+ <p class="lede">{'Một số hình ảnh LHC Việt Nam chụp trong quá trình khảo sát, tham vấn và giám sát dự án. Khuôn mặt và thông tin nhận dạng đã được làm mờ.' if v else 'A selection of photos taken by LHC Viet Nam during project surveys, consultations and monitoring. Faces and identifying details have been blurred.'}</p></div></div>
+<section><div class="wrap"><div class="gallery">{items}</div></div></section>'''
+    desc = ('Hình ảnh hiện trường của LHC Việt Nam: khảo sát, tham vấn cộng đồng và giám sát dự án tại Việt Nam và Lào.'
+            if v else 'Field photos by LHC Viet Nam: surveys, community consultation and project monitoring in Viet Nam and Lao PDR.')
+    return page('photos', L, 'Hình ảnh hiện trường' if v else 'Field photos', desc, body)
 
 
 TERMS_VI, TERMS_EN = re.sub(r'<!--.*?-->', '', (ROOT / 'content' / 'dieu-khoan.md').read_text(encoding='utf-8'), flags=re.S).split('=== EN ===')
@@ -652,8 +573,8 @@ OLD_ARTICLES = ['hop-chuan-bi-du-an-dau-tu-xay-dung-tuyen-duong-tranh-thanh-pho-
     'huong-toi-lo-trinh-quoc-gia-ve-giam-thieu-nhua-dung-mot-lan-o-viet-nam-chien-luoc-va-lua-chon-uu-tien',
     'nhung-diem-chinh-bao-cao-quoc-gia-ve-khi-hau-va-phat-trien-cho-viet-nam',
     'du-an-ho-chua-nuoc-thuc-luyen-tinh-phu-tho']
-REDIRECTS = {'linh-vuc-hoat-dong': 'dich-vu/', 'danh-sach-du-an-tieu-bieu': 'du-an/',
-    'hinh-anh': 'du-an/#hinh-anh', 'en/photos': 'en/projects/#photos',  # field photos page merged into Projects (11/2026)
+REDIRECTS = {'linh-vuc-hoat-dong': 'dich-vu/', 'du-an': 'dich-vu/', 'en/projects': 'en/services/',  # Projects page of 16/11/2026 retired
+    'danh-sach-du-an-tieu-bieu': 'dich-vu/',
     'khach-hangnha-tai-tro': 'gioi-thieu/', 'kinh-doanh-dich-vu': 'dich-vu/', 'do-dac-dia-chinh': 'dich-vu/#gis-du-lieu',
     'tu-van-moi-truong': 'dich-vu/#moi-truong-ats', 'tu-van-tai-dinh-cu': 'dich-vu/#xa-hoi-tai-dinh-cu',
     'tu-van-xa-hoi-gioi-dtts': 'dich-vu/#xa-hoi-tai-dinh-cu', 'tu-van-sinh-ke': 'dich-vu/#xa-hoi-tai-dinh-cu',
@@ -680,7 +601,7 @@ def build(out=OUT, include_drafts=False):
     (OUT / 'assets').mkdir(parents=True)
     posts = load_posts(include_drafts)
     builders = {'home': home, 'about': about, 'services': services, 'updates': lambda L: updates_page(L, posts),
-                'links': links_page, 'projects': projects_page, 'contact': contact_page, 'terms': terms_page}
+                'links': links_page, 'photos': photos_page, 'contact': contact_page, 'terms': terms_page}
     for p in posts:
         builders[p['key']] = lambda L, p=p: post_page(p, L)
     if not posts:  # no published article yet: keep the section out of the site
