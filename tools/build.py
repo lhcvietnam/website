@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'docs'
 SITE = 'https://lhcviet.com'
 YEAR = '2026'
-md = (ROOT / 'content' / 'noi-dung_v09.md').read_text(encoding='utf-8')
+md = (ROOT / 'content' / 'noi-dung_v10.md').read_text(encoding='utf-8')
 E = html.escape
 
 
@@ -234,7 +234,7 @@ FIELD = {
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
 PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
-GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p40', 'b04', 'p01']  # newest first, undated last; p02 (hi-vis vests), p33 (rubber) dropped 16/11/2026; p12 now on service 6
+GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p01']  # newest first, undated last; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
 
 
 SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p12'}
@@ -274,7 +274,7 @@ def svc_photo_cards(L, me):  # home: six service cards, each with a small field 
                    for s in SERVICES)
 
 
-SVC_SHORT = [('Môi trường, ATSKNN', 'Environment, OHS'), ('Xã hội, tái định cư', 'Social, resettlement'),
+SVC_SHORT = [('Môi trường, an toàn lao động', 'Environment, OHS'), ('Xã hội, tái định cư', 'Social, resettlement'),
              ('Vốn tự nhiên', 'Natural capital'), ('Thiên tai, khí hậu', 'Disaster, climate'),
              ('GIS, dữ liệu', 'GIS, data'), ('Hỗ trợ thực hiện', 'Implementation support')]
 FUND_KEYS = ['WB', 'ADB', 'AFD', 'IFC', 'JICA', 'JBIC', 'GEF', 'UNDP', 'EIB', 'NSNN']
@@ -315,15 +315,17 @@ def home(L):
     stats = ''.join(f'<div class="stat"><b>{n}</b><p>{E(a if v else b)}</p></div>' for n, a, b in STATS)
     groups = ''.join(f'<li>{E(x(g))}</li>' for g in GROUPS)
     feat = ''.join(proj_card(i, SERVICES[i]['projs'][j][0 if v else 1], L, me) for i, j in FEATURED)
-    hbg = img_tag('n01', L, me, '100vw', lazy=False).replace('<img ', '<img class="hbgb" fetchpriority="high" ')
-    body = f'''<div class="hxb">{hbg}<div class="wrap"><div class="hxt">
+    harch = img_tag('n01', L, me, '(min-width:760px) 440px, 78vw', lazy=False).replace('<img ', '<img fetchpriority="high" ')
+    cstats = ''.join(f'<div><b>{n}</b><span>{E(a if v else b)}</span></div>' for n, a, b in STATS)
+    cgrid = ''.join(f'<li><a href="{rel(me, path_of("services", L))}#{s["id"][L]}"><span class="n">{s["n"]}</span>'
+                    f'<span class="t">{E(x(s["title"]))}</span><span class="ar">{"Xem dịch vụ" if v else "View service"} →</span></a></li>' for s in SERVICES)
+    body = f'''<div class="c-hero"><div class="wrap"><div class="c-txt">
  <p class="kicker">{'LHC Việt Nam · Thành lập 2014, Hà Nội' if v else 'LHC Viet Nam · Established 2014, Ha Noi'}</p>
  <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, Social &amp; Natural Capital Advisory'}</h1>
- <p class="pillars-line">{'Môi trường · Con người · Vốn tự nhiên' if v else 'Environment · People · Natural Capital'}</p>
+ <p class="c-pil">{' <i></i> '.join(['Môi trường', 'Con người', 'Vốn tự nhiên'] if v else ['Environment', 'People', 'Natural Capital'])}</p>
  <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="btn ghost" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p>
-
-</div></div></div>
-<div class="hxs"><div class="wrap"><div class="stats">{stats}</div></div></div>
+</div><figure class="c-arch">{harch}</figure></div>
+<div class="wrap"><div class="c-stats">{cstats}</div></div></div>
 
 <section><div class="wrap two">
  <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h2>{'Hơn mười năm tư vấn cho dự án đầu tư công và tư nhân' if v else 'More than ten years advising public and private investment projects'}</h2></div>
@@ -332,7 +334,7 @@ def home(L):
 
 <section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Dịch vụ' if v else 'Services'}</p><h2>{'Sáu nhóm dịch vụ' if v else 'Six service lines'}</h2></div>
- <ul class="cards">{svc_list(L, me)}</ul>
+ <ol class="c-grid">{cgrid}</ol>
 </div></section>
 
 <section><div class="wrap">
@@ -341,12 +343,14 @@ def home(L):
  <p class="cta"><a class="btn" href="{rel(me, path_of('projects', L))}">{'Xem tất cả dự án' if v else 'All projects'}</a></p>
 </div></section>
 
-<section class="band"><div class="wrap">
+<section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Khách hàng và nguồn vốn' if v else 'Clients and financing'}</p><h2>{'Chúng tôi làm việc với' if v else 'We work with'}</h2></div>
  <ul class="groups">{groups}</ul>
  <div class="fin"><h3 class="lbl">{'Nguồn vốn của các dự án' if v else 'Project financing'}</h3>{fin_strip(L)}</div>
- <div class="closing"><p class="credo">{E(x(CREDO))}</p>
- <p class="cta"><a class="btn" href="{rel(me, path_of('contact', L))}">{'Liên hệ với chúng tôi' if v else 'Get in touch'}</a></p></div>
+ </div></section>
+
+<section class="c-close"><div class="wrap"><p class="credo">{E(x(CREDO))}</p>
+ <p class="cta"><a class="btn" href="{rel(me, path_of('contact', L))}">{'Liên hệ với chúng tôi' if v else 'Get in touch'}</a></p>
 </div></section>'''
     title = 'LHC Việt Nam · Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'LHC Viet Nam · Environmental, Social & Natural Capital Advisory'
     desc = ('Công ty tư vấn môi trường, xã hội, tái định cư, dân tộc thiểu số, giới và vốn tự nhiên tại Hà Nội; ĐTM, ESIA, RAP, EMDP, SEP, giám sát độc lập cho dự án vốn WB, ADB, JICA, AFD, IFC.'
@@ -494,7 +498,7 @@ def projects_page(L):
     fbtn = btn('f', '', 'Tất cả' if v else 'All', True) + ''.join(btn('f', k, FUND_LABEL.get(k, (k, k))[0 if v else 1]) for k in FUND_KEYS if k in used)
     items = ''.join(photo(k, L, me, 'photo gitem', HALF) for k in GALLERY)
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Dự án' if v else 'Projects'}</p><h1>{'Dự án tiêu biểu' if v else 'Selected projects'}</h1>
- <p class="lede">{'Một số dự án LHC Việt Nam đã và đang thực hiện, ghi năm thực hiện, nguồn vốn và vai trò của LHC. Tên chủ đầu tư và giá trị hợp đồng không được công bố.' if v else 'A selection of LHC Viet Nam assignments, with year, financing and LHC role. Client names and contract values are not published.'}</p></div></div>
+ <p class="lede">{'Một số dự án tiêu biểu LHC Việt Nam đã và đang thực hiện, kèm năm, nguồn vốn và vai trò của LHC. Tên chủ đầu tư và giá trị hợp đồng không được nêu.' if v else 'A selection of LHC Viet Nam assignments, with the year, source of financing and LHC\'s role. Client names and contract values are not disclosed.'}</p></div></div>
 <section><div class="wrap">
  <div class="pfilters" hidden>
   <div class="fgroup"><p class="lbl">{'Lĩnh vực' if v else 'Service line'}</p><div class="fbtns">{sbtn}</div></div>
@@ -694,6 +698,8 @@ def build(out=OUT, include_drafts=False):
         (OUT / old / 'index.html').write_text(redirect_page(old, new), encoding='utf-8')
     (OUT / '404.html').write_text(NOT_FOUND.replace('{CSS_V}', CSS_V), encoding='utf-8')
     shutil.copy(ROOT / 'assets' / 'site.css', OUT / 'assets' / 'site.css')
+    for svg in ('contour.svg', 'contour-dark.svg'):  # topographic line pattern (home hero, page heads, closing band)
+        shutil.copy(ROOT / 'assets' / svg, OUT / 'assets' / svg)
     shutil.copytree(ROOT / 'assets' / 'photos', OUT / 'assets' / 'photos')
     (OUT / 'assets' / 'favicon.svg').write_text(favicon(), encoding='utf-8')
     og_image(OUT / 'assets' / 'og.png')
