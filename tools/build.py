@@ -101,7 +101,7 @@ WHY = [(why[i], why[i + 1]) for i in range(1, len(why), 2)]
 COMPANY = contact[0]
 ADDRESS = contact[1]
 CREDO = contact[2]
-PHONE, PHONE_TEL, EMAIL = '+84 913 189 758', '+84913189758', 'info@lhcviet.com'
+PHONE, PHONE_TEL, EMAIL = '+84 913 189 758', '+84913189758', 'admin@lhcviet.com'
 
 
 # ---------- pages ----------
