@@ -88,7 +88,7 @@ section.tint{background:var(--tint)}
 .caps{padding-left:1.1em;display:grid;gap:8px}.caps li::marker{color:var(--brand)}
 .projs{list-style:none;padding:0;display:grid;gap:10px}
 .proj{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:6px}
-.pfund{grid-row:span 3;font-weight:600;font-size:.78rem;color:var(--brand);border:1px solid var(--brand);border-radius:4px;padding:2px 6px;align-self:start;max-width:9em}
+.pfund{grid-row:span 4;font-weight:600;font-size:.78rem;color:var(--brand);border:1px solid var(--brand);border-radius:4px;padding:2px 6px;align-self:start;max-width:9em}
 .pname{font-weight:600}.pmeta{font-size:.88rem;color:var(--muted)}.pout{font-size:.92rem}
 
 .groups{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
@@ -163,13 +163,15 @@ footer .fname2{color:var(--band-ink);opacity:.85}
 /* field photos (11/2026) */
 .hphoto{position:relative;isolation:isolate;overflow:hidden;background-image:none}
 .hphoto .hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%;z-index:-2}
-.hphoto::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,59,42,.92) 0%,rgba(13,59,42,.8) 50%,rgba(13,59,42,.5) 100%)}
+.hphoto::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,59,42,.9) 0%,rgba(13,59,42,.72) 50%,rgba(13,59,42,.35) 100%)}
 .hphoto .stats{background:color-mix(in srgb,var(--band-ink) 20%,var(--band))}
 .hcap{position:absolute;right:16px;bottom:8px;font-size:.75rem;color:rgba(232,241,236,.8)}
-@media (max-width:640px){.hphoto::before{background:rgba(13,59,42,.88)}}
+@media (max-width:640px){.hphoto::before{background:rgba(13,59,42,.82)}}
 .svcphoto.fp{max-width:880px}.svcphoto.fp img{aspect-ratio:16/9;object-fit:cover}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px}
 .gallery .photo img{aspect-ratio:4/3;object-fit:cover}
 .gallery .photo{margin:0}
 .more-photos{margin-top:16px}
 .svcphoto.ptop{margin:32px 0 0}
+.hphoto .stat:last-child:nth-child(odd){grid-column:1/-1}
+.prole{display:block;font-size:.82rem;color:var(--muted);margin-top:4px}

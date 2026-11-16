@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'docs'
 SITE = 'https://lhcviet.com'
 YEAR = '2026'
-md = (ROOT / 'content' / 'noi-dung_v08.md').read_text(encoding='utf-8')
+md = (ROOT / 'content' / 'noi-dung_v09.md').read_text(encoding='utf-8')
 E = html.escape
 
 
@@ -52,11 +52,15 @@ for k, (code, tv, te) in enumerate(heads):
     blk = sec(f'### {code} ', f'### {nxt} ' if nxt else '## 4.')
     cap_blk, proj_blk = blk.split('**Một số dự án')
     projs = []
-    for vn, en in pairs(proj_blk):  # name · financing · region [· status] [· output]
-        fv = [x.strip() for x in vn.split('·')]
-        fe = [x.strip() for x in en.split('·')]
-        projs.append(tuple(dict(name=f[0], fund=f[1], meta=' · '.join(f[2:-1] if len(f) > 3 else f[2:]),
-                                out=f[-1] if len(f) > 3 else '') for f in (fv, fe)))
+    for vn, en in pairs(proj_blk):  # name · financing · region [· status] [· output] [year; LHC role]
+        cards = []
+        for line in (vn, en):
+            m = re.search(r'\s*\[([^;\]]+); ([^\]]+)\]\s*$', line)
+            yr, role = (m.group(1), m.group(2)) if m else ('', '')
+            f = [x.strip() for x in (line[:m.start()] if m else line).split('·')]
+            cards.append(dict(name=f[0], fund=f[1], meta=' · '.join(f[2:-1] if len(f) > 3 else f[2:]),
+                              out=f[-1] if len(f) > 3 else '', year=yr, role=role))
+        projs.append(tuple(cards))
     SERVICES.append(dict(n=code[-1], title=(tv, te), caps=pairs(cap_blk), projs=projs,
                          id={'vi': SLUG_VI[k], 'en': SLUG_EN[k]}))
 
@@ -129,6 +133,13 @@ LOGO = re.sub(r'<title>.*?</title>', '', logo_svg).replace('fill="#008854"', 'fi
     .replace('width="230" height="81"', 'class="logo" aria-hidden="true" focusable="false"')
 
 
+ORG_LD = ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization",'
+          '"name":"Công ty TNHH Thương mại và Đầu tư LHC Việt Nam",'
+          '"alternateName":["LHC Viet Nam Investment and Trading Company Limited","LHC Việt Nam"],'
+          f'"url":"{SITE}/","logo":"{SITE}/assets/og.png","foundingDate":"2014-12-29",'
+          '"address":{"@type":"PostalAddress","streetAddress":"Số 38B ngõ 77 đường Xuân La","addressLocality":"Phường Tây Hồ, Hà Nội","addressCountry":"VN"}}</script>\n')
+
+
 def page(key, L, title, desc, body):
     me = path_of(key, L)
     other = 'en' if L == 'vi' else 'vi'
@@ -162,7 +173,7 @@ def page(key, L, title, desc, body):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,500;7..72,600&amp;display=swap">
 <link rel="stylesheet" href="{r('assets/site.css')}?v={CSS_V}">
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "946c4e495cce4109bbbc216c7077181c"}}'></script>
+{ORG_LD if key == 'home' else ''}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "946c4e495cce4109bbbc216c7077181c"}}'></script>
 </head>
 <body>
 <a class="skip" href="#main">{'Bỏ qua menu' if L == 'vi' else 'Skip to content'}</a>
@@ -217,13 +228,14 @@ FIELD = {
     'p40': ('cang-ca-thanh-hoa', 1280, 960, 'Khu cảng cá', 'Fishing port', 'Thanh Hóa · 10/2021', 'Thanh Hoa · Oct 2021'),
     'p38': ('sinh-ke-cau-ngang', 795, 765, 'Nông dân vận chuyển nông sản sau thu hoạch', 'Farmers hauling harvested produce', 'Cầu Ngang, Trà Vinh · 05/2022', 'Cau Ngang, Tra Vinh · May 2022'),
     'p02': ('cang-bien-ha-tinh', 1280, 960, 'Nhóm chuyên gia tại cầu cảng, mang đồ bảo hộ', 'Team on a port jetty in safety gear', 'Hà Tĩnh · 09/2025', 'Ha Tinh · Sep 2025'),
+    'n01': ('nui-da-voi-rung', 1280, 719, 'Rừng trên núi đá vôi và ruộng lúa', 'Forest on limestone hills above rice fields', 'Rừng trên núi đá vôi và ruộng lúa', 'Forest on limestone hills above rice fields'),
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
 PHOTO_SRC.update({k: dict(n=n, big=1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
 GALLERY = ['p02', 'p42', 'p06', 'p12', 'p21', 'p33', 'p36', 'p38', 'p40', 'p01']  # newest first, undated last
 
 
-SVC_PHOTO = {'1': 'p41', '2': 'p07', '4': 'p05', '5': 'p09', '6': 'p43'}  # 3.3: no suitable photo yet
+SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p43'}
 
 
 def img_tag(key, L, me, sizes='(min-width:1120px) 1072px, 100vw', lazy=True):
@@ -351,7 +363,9 @@ def services(L):
         for pv, pe in s['projs']:
             f = pv if v else pe
             projs += (f'<li class="proj"><span class="pfund">{E(f["fund"])}</span><span class="pname">{E(f["name"])}</span>'
-                      f'<span class="pmeta">{E(f["meta"])}</span>' + (f'<span class="pout">{E(f["out"])}</span>' if f['out'] else '') + '</li>')
+                      f'<span class="pmeta">{E(" · ".join(x for x in (f["year"], f["meta"]) if x))}</span>'
+                      + (f'<span class="pout">{E(f["out"])}</span>' if f['out'] else '')
+                      + (f'<span class="prole">{"Vai trò của LHC" if v else "LHC role"}: {E(f["role"])}</span>' if f['role'] else '') + '</li>')
         blocks += (f'<section class="svc" id="{s["id"][L]}"><div class="wrap">'
                    f'<div class="shead"><p class="kicker">{"Dịch vụ" if v else "Service"} {s["n"]}</p><h2>{E(x(s["title"]))}</h2></div>'
                    + (photo(SVC_PHOTO[str(s["n"]).lstrip("0")], L, me, 'photo svcphoto fp', '(min-width:920px) 880px, 100vw') if str(s["n"]).lstrip("0") in SVC_PHOTO else '') +
