@@ -27,7 +27,7 @@ Website không có biểu mẫu thu thập thông tin cá nhân. Website dùng C
 
 ### 6. Báo vi phạm
 
-Nếu phát hiện nội dung của LHC Việt Nam bị sử dụng trái phép, hoặc cho rằng website này sử dụng nội dung của mình chưa đúng, xin gửi thông tin về admin@lhcviet.com.
+Nếu phát hiện nội dung của LHC Việt Nam bị sử dụng trái phép, hoặc cho rằng website này sử dụng nội dung của mình chưa đúng, xin gửi thông tin về info@lhcviet.com.
 
 ### 7. Luật áp dụng
 
@@ -61,7 +61,7 @@ This website has no forms that collect personal data. It uses Cloudflare Web Ana
 
 ### 6. Reporting misuse
 
-If you find LHC Viet Nam’s content being used without permission, or believe this website uses your content improperly, please write to admin@lhcviet.com.
+If you find LHC Viet Nam’s content being used without permission, or believe this website uses your content improperly, please write to info@lhcviet.com.
 
 ### 7. Governing law
 
