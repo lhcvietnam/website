@@ -234,7 +234,7 @@ FIELD = {
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
 PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
-GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p40', 'b04', 'p01']  # newest first, undated last; p02 (hi-vis vests), p33 (rubber) dropped 16/11/2026; p12 now on service 6
+GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p01']  # newest first, undated last; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
 
 
 SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p12'}
