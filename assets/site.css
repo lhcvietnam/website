@@ -160,3 +160,16 @@ footer .fname2{color:var(--band-ink);opacity:.85}
 .funders a{display:block;min-width:72px;text-align:center;padding:10px 16px;border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:6px;background:var(--surface);color:var(--ink);font-weight:700;letter-spacing:.04em;text-decoration:none}
 .funders a:hover,.funders a:focus-visible{border-color:var(--brand);color:var(--brand)}
 .finrest{margin-top:12px;color:var(--muted)}
+/* field photos (11/2026) */
+.hphoto{position:relative;isolation:isolate;overflow:hidden;background-image:none}
+.hphoto .hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%;z-index:-2}
+.hphoto::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,59,42,.94) 0%,rgba(13,59,42,.86) 55%,rgba(13,59,42,.62) 100%)}
+.hphoto .stat{background:rgba(13,59,42,.88)}
+.hcap{position:absolute;right:16px;bottom:8px;font-size:.75rem;color:rgba(232,241,236,.8)}
+@media (max-width:640px){.hphoto::before{background:rgba(13,59,42,.88)}}
+.svcphoto.fp{max-width:880px}.svcphoto.fp img{aspect-ratio:16/9;object-fit:cover}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px}
+.gallery .photo img{aspect-ratio:4/3;object-fit:cover}
+.gallery .photo{margin:0}
+.more-photos{margin-top:16px}
+.svcphoto.ptop{margin:32px 0 0}

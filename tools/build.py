@@ -108,10 +108,11 @@ PAGES = {  # key: (vi path, en path, vi nav label, en nav label)
     'contact': ('lien-he/', 'en/contact/', 'Liên hệ', 'Contact'),
     'updates': ('cap-nhat/', 'en/updates/', 'Cập nhật chuyên môn', 'Updates'),
     'links': ('lien-ket/', 'en/links/', 'Liên kết hữu ích', 'Useful links'),
+    'photos': ('hinh-anh/', 'en/photos/', 'Hình ảnh hiện trường', 'Field photos'),
     'terms': ('dieu-khoan-su-dung/', 'en/terms/', 'Điều khoản sử dụng', 'Terms of use'),
 }
 NAV = ['about', 'services', 'updates', 'contact']
-FOOT = ['about', 'services', 'updates', 'links', 'contact']
+FOOT = ['about', 'services', 'photos', 'updates', 'links', 'contact']
 NAV_LABEL = {'about': ('Giới thiệu', 'About'), 'services': ('Dịch vụ', 'Services'), 'updates': ('Cập nhật', 'Updates'), 'contact': ('Liên hệ', 'Contact')}
 
 
@@ -186,7 +187,7 @@ def page(key, L, title, desc, body):
 '''
 
 
-PHOTOS = {
+PHOTOS = {  # key: (file stem, alt VN, alt EN, width/height); caption = alt
     'field': ('thuc-dia-khao-sat', 'Cán bộ LHC khảo sát, phỏng vấn người dân tại hiện trường', 'LHC staff interviewing a local resident during a field survey', 4/3),
     'consult': ('hop-tham-van-cong-dong', 'Họp tham vấn cộng đồng', 'Community consultation meeting', 1600/672),
     'site': ('cong-truong-xay-dung', 'Kiểm soát ra vào tại công trường xây dựng', 'Access control at a construction site', 1272/704),
@@ -194,17 +195,51 @@ PHOTOS = {
     'training': ('hoi-thao-tap-huan', 'Hội thảo tập huấn về quản lý môi trường – xã hội cho cán bộ dự án', 'Environmental and social management training workshop for project staff', 4/3),
     'team': ('lam-viec-nhom', 'Buổi làm việc của nhóm chuyên gia trong nước và quốc tế', 'Working session of national and international experts', 4/3),
 }
+PHOTO_SRC = {k: dict(n=n, big=1600, w=1600, h=round(1600 / r), alt=(av, ae), cap=(av, ae)) for k, (n, av, ae, r) in PHOTOS.items()}
+
+# Field photos taken by LHC Viet Nam (faces, number plates, signs and client names blurred; no EXIF/GPS).
+# Caption = place and month/year only, as recorded in the photo register (Bang_phan_loai_anh_website_v03).
+# key: (file stem, width, height of the -1280 file, alt VN, alt EN, caption VN, caption EN)
+FIELD = {
+    'p08': ('trang-chu-de-bien-hau-loc', 1085, 604, 'Đê biển và cống ngăn triều ven bãi bồi', 'Sea dyke and tidal sluice on a mudflat coast', 'Hậu Lộc, Thanh Hóa · 11/2024', 'Hau Loc, Thanh Hoa · Nov 2024'),
+    'p10': ('doi-ngu-thuc-dia-hau-loc', 1280, 960, 'Nhóm chuyên gia khảo sát hiện trường', 'Expert team on a site survey', 'Hậu Lộc, Thanh Hóa · 10/2024', 'Hau Loc, Thanh Hoa · Oct 2024'),
+    'p41': ('lo-gach-mang-thit', 1280, 765, 'Lò gạch thủ công', 'Traditional brick kiln', 'Mang Thít, Vĩnh Long · 06/2025', 'Mang Thit, Vinh Long · Jun 2025'),
+    'p07': ('tham-van-cong-dong-hau-loc', 1280, 960, 'Họp tham vấn cộng đồng tại nhà văn hóa thôn', 'Community consultation in a village hall', 'Hậu Lộc, Thanh Hóa · 11/2024', 'Hau Loc, Thanh Hoa · Nov 2024'),
+    'p05': ('nha-ven-song-tam-binh', 712, 720, 'Nhà ở ven sông', 'Riverside houses on stilts', 'Tam Bình, Vĩnh Long · 06/2025', 'Tam Binh, Vinh Long · Jun 2025'),
+    'p09': ('bai-trieu-hau-loc', 1085, 604, 'Bãi triều và tàu cá lúc nước ròng', 'Tidal flat and fishing boats at low tide', 'Hậu Lộc, Thanh Hóa · 11/2024', 'Hau Loc, Thanh Hoa · Nov 2024'),
+    'p43': ('hoi-nghi-du-an', 850, 650, 'Hội nghị của dự án', 'Project meeting', '', ''),
+    'p01': ('hop-lam-viec-ha-noi', 1280, 960, 'Cuộc họp làm việc', 'Working meeting', 'Hà Nội', 'Ha Noi'),
+    'p42': ('khao-sat-bang-ghe-mang-thit', 712, 720, 'Khảo sát kênh rạch bằng ghe', 'Surveying canals by boat', 'Mang Thít, Vĩnh Long · 06/2025', 'Mang Thit, Vinh Long · Jun 2025'),
+    'p12': ('hoi-thao-tam-ky', 1280, 960, 'Hội thảo', 'Workshop', 'Tam Kỳ, Quảng Nam · 06/2024', 'Tam Ky, Quang Nam · Jun 2024'),
+    'p33': ('vuon-cao-su-binh-phuoc', 1280, 960, 'Khảo sát tại vườn cao su', 'Site visit to a rubber plantation', 'Bình Phước · 11/2023', 'Binh Phuoc · Nov 2023'),
+    'p36': ('hop-cong-truong-vieng-chan', 1280, 960, 'Họp tại văn phòng công trường', 'Meeting at a construction site office', 'Viêng Chăn, Lào · 05/2023', 'Vientiane, Lao PDR · May 2023'),
+    'p21': ('cang-ca-nghi-son', 1280, 960, 'Tàu cá neo đậu tại cảng', 'Fishing boats moored in port', 'Nghi Sơn, Thanh Hóa · 01/2024', 'Nghi Son, Thanh Hoa · Jan 2024'),
+    'p40': ('cang-ca-thanh-hoa', 1280, 960, 'Khu cảng cá', 'Fishing port', 'Thanh Hóa · 10/2021', 'Thanh Hoa · Oct 2021'),
+    'p38': ('sinh-ke-cau-ngang', 795, 765, 'Nông dân vận chuyển nông sản sau thu hoạch', 'Farmers hauling harvested produce', 'Cầu Ngang, Trà Vinh · 05/2022', 'Cau Ngang, Tra Vinh · May 2022'),
+    'p02': ('cang-bien-ha-tinh', 1280, 960, 'Nhóm chuyên gia tại cầu cảng, mang đồ bảo hộ', 'Team on a port jetty in safety gear', 'Hà Tĩnh · 09/2025', 'Ha Tinh · Sep 2025'),
+    'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
+}
+PHOTO_SRC.update({k: dict(n=n, big=1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
+GALLERY = ['p02', 'p42', 'p06', 'p12', 'p21', 'p33', 'p36', 'p38', 'p40', 'p01']  # newest first, undated last
 
 
-SVC_PHOTO = {'1': 'site', '2': 'resettle', '6': 'training'}
+SVC_PHOTO = {'1': 'p41', '2': 'p07', '4': 'p05', '5': 'p09', '6': 'p43'}  # 3.3: no suitable photo yet
 
 
-def photo(key, L, me, cls='photo'):
-    n, av, ae, ratio = PHOTOS[key]
-    alt = av if L == 'vi' else ae
-    a = rel(me, f'assets/photos/{n}-800.jpg'); b = rel(me, f'assets/photos/{n}-1600.jpg')
-    return (f'<figure class="{cls}"><img src="{a}" srcset="{a} 800w, {b} 1600w" sizes="(min-width:1120px) 1072px, 100vw" '
-            f'width="1600" height="{round(1600/ratio)}" alt="{E(alt)}" loading="lazy" decoding="async"><figcaption>{E(alt)}</figcaption></figure>')
+def img_tag(key, L, me, sizes='(min-width:1120px) 1072px, 100vw', lazy=True):
+    f = PHOTO_SRC[key]
+    a = rel(me, f"assets/photos/{f['n']}-800.jpg"); b = rel(me, f"assets/photos/{f['n']}-{f['big']}.jpg")
+    alt = f['alt'][0 if L == 'vi' else 1]
+    return (f'<img src="{a}" srcset="{a} 800w, {b} {f["big"]}w" sizes="{sizes}" width="{f["w"]}" height="{f["h"]}" alt="{E(alt)}"'
+            + (' loading="lazy"' if lazy else '') + ' decoding="async">')
+
+
+HALF = '(min-width:1120px) 528px, (min-width:720px) 50vw, 100vw'
+
+
+def photo(key, L, me, cls='photo', sizes='(min-width:1120px) 1072px, 100vw'):
+    cap = PHOTO_SRC[key]['cap'][0 if L == 'vi' else 1]
+    return f'<figure class="{cls}">{img_tag(key, L, me, sizes)}' + (f'<figcaption>{E(cap)}</figcaption>' if cap else '') + '</figure>'
 
 
 def svc_list(L, me):
@@ -222,19 +257,21 @@ def home(L):
     pillars = ''.join(f'<article class="pillar"><h3>{E(x(n))}</h3><p>{E(x(t))}</p></article>' for n, t in PILLARS)
     groups = ''.join(f'<li>{E(x(g))}</li>' for g in GROUPS)
     whys = ''.join(f'<li><h3>{E(x(h))}</h3><p>{E(x(t))}</p></li>' for h, t in WHY)
-    body = f'''<div class="hero"><div class="wrap">
+    hcap = PHOTO_SRC['p08']['cap'][0 if v else 1]
+    hbg = img_tag('p08', L, me, '100vw', lazy=False).replace('<img ', '<img class="hbg" fetchpriority="high" ')
+    body = f'''<div class="hero hphoto">{hbg}<div class="wrap">
  <p class="kicker">{'LHC Việt Nam · Thành lập 2014, Hà Nội' if v else 'LHC Viet Nam · Established 2014, Ha Noi'}</p>
  <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, Social &amp; Natural Capital Advisory'}</h1>
  <p class="pillars-line">{'Môi trường · Con người · Vốn tự nhiên' if v else 'Environment · People · Natural Capital'}</p>
  <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="btn ghost" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p>
  <div class="stats">{stats}</div>
-</div></div>
+</div><p class="hcap">{E(hcap)}</p></div>
 
 <section><div class="wrap two">
  <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h2>{'Hơn mười năm tư vấn cho dự án đầu tư công và tư nhân' if v else 'More than ten years advising public and private investment projects'}</h2></div>
  <div class="prose"><p>{E(x(intro[0]))}</p><p><a class="more" href="{rel(me, path_of('about', L))}">{'Tìm hiểu về LHC' if v else 'More about LHC'}</a></p></div>
 </div>
-<div class="wrap">{photo('field', L, me, 'photo wide')}</div></section>
+<div class="wrap">{photo('field', L, me, 'photo wide')}<p class="more-photos"><a class="more" href="{rel(me, path_of('photos', L))}">{'Hình ảnh hiện trường' if v else 'Field photos'}</a></p></div></section>
 
 <section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Ba trụ cột' if v else 'Three pillars'}</p></div>
@@ -288,6 +325,7 @@ def about(L):
 <section><div class="wrap">
  <div class="shead"><p class="kicker">{'Ba trụ cột' if v else 'Three pillars'}</p></div>
  <div class="pillars">{pillars}</div>
+ {photo('p10', L, path_of('about', L), 'photo svcphoto fp ptop', '(min-width:920px) 880px, 100vw')}
 </div></section>
 <section class="tint" id="{'chat-luong' if v else 'quality'}"><div class="wrap">
  <div class="shead"><p class="kicker">{'Quản lý chất lượng' if v else 'Quality management'}</p><h2>{E(x(quality[0]))}</h2><p class="lede">{E(x(quality[1]))}</p></div>
@@ -316,7 +354,7 @@ def services(L):
                       f'<span class="pmeta">{E(f["meta"])}</span>' + (f'<span class="pout">{E(f["out"])}</span>' if f['out'] else '') + '</li>')
         blocks += (f'<section class="svc" id="{s["id"][L]}"><div class="wrap">'
                    f'<div class="shead"><p class="kicker">{"Dịch vụ" if v else "Service"} {s["n"]}</p><h2>{E(x(s["title"]))}</h2></div>'
-                   + (photo(SVC_PHOTO[str(s["n"]).lstrip("0")], L, me, 'photo svcphoto') if str(s["n"]).lstrip("0") in SVC_PHOTO else '') +
+                   + (photo(SVC_PHOTO[str(s["n"]).lstrip("0")], L, me, 'photo svcphoto fp', '(min-width:920px) 880px, 100vw') if str(s["n"]).lstrip("0") in SVC_PHOTO else '') +
                    f'<div class="two"><div><h3 class="lbl">{"Năng lực" if v else "Capabilities"}</h3><ul class="caps">{caps}</ul></div>'
                    f'<div><h3 class="lbl">{"Một số dự án" if v else "Selected projects"}</h3><ul class="projs">{projs}</ul></div></div>'
                    f'</div></section>\n')
@@ -376,6 +414,18 @@ def links_page(L):
     desc = ('Liên kết đến khung chính sách môi trường và xã hội của WB, ADB, IFC, JICA, AFD, UNDP và cơ sở dữ liệu pháp luật Việt Nam.'
             if v else 'Links to the environmental and social frameworks of WB, ADB, IFC, JICA, AFD and UNDP, and to Vietnamese legal databases.')
     return page('links', L, 'Liên kết hữu ích' if v else 'Useful links', desc, body)
+
+
+def photos_page(L):
+    v = L == 'vi'
+    me = path_of('photos', L)
+    items = ''.join(photo(k, L, me, 'photo gitem', HALF) for k in GALLERY)
+    body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Hình ảnh' if v else 'Photos'}</p><h1>{'Hình ảnh hiện trường' if v else 'Field photos'}</h1>
+ <p class="lede">{'Một số hình ảnh LHC Việt Nam chụp trong quá trình khảo sát, tham vấn và giám sát dự án. Khuôn mặt và thông tin nhận dạng đã được làm mờ.' if v else 'A selection of photos taken by LHC Viet Nam during project surveys, consultations and monitoring. Faces and identifying details have been blurred.'}</p></div></div>
+<section><div class="wrap"><div class="gallery">{items}</div></div></section>'''
+    desc = ('Hình ảnh hiện trường của LHC Việt Nam: khảo sát, tham vấn cộng đồng và giám sát dự án tại Việt Nam và Lào.'
+            if v else 'Field photos by LHC Viet Nam: surveys, community consultation and project monitoring in Viet Nam and Lao PDR.')
+    return page('photos', L, 'Hình ảnh hiện trường' if v else 'Field photos', desc, body)
 
 
 TERMS_VI, TERMS_EN = re.sub(r'<!--.*?-->', '', (ROOT / 'content' / 'dieu-khoan.md').read_text(encoding='utf-8'), flags=re.S).split('=== EN ===')
@@ -531,7 +581,7 @@ def build(out=OUT, include_drafts=False):
     (OUT / 'assets').mkdir(parents=True)
     posts = load_posts(include_drafts)
     builders = {'home': home, 'about': about, 'services': services, 'updates': lambda L: updates_page(L, posts),
-                'links': links_page, 'contact': contact_page, 'terms': terms_page}
+                'links': links_page, 'photos': photos_page, 'contact': contact_page, 'terms': terms_page}
     for p in posts:
         builders[p['key']] = lambda L, p=p: post_page(p, L)
     if not posts:  # no published article yet: keep the section out of the site
