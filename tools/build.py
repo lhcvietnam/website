@@ -224,7 +224,7 @@ FIELD = {
     'p42': ('khao-sat-bang-ghe-mang-thit', 712, 720, 'Khảo sát kênh rạch bằng ghe', 'Surveying canals by boat', 'Mang Thít, Vĩnh Long · 06/2025', 'Mang Thit, Vinh Long · Jun 2025'),
     'p12': ('hoi-thao-tam-ky', 1280, 960, 'Hội thảo', 'Workshop', 'Tam Kỳ, Quảng Nam · 06/2024', 'Tam Ky, Quang Nam · Jun 2024'),
     'p33': ('vuon-cao-su-binh-phuoc', 1280, 960, 'Khảo sát tại vườn cao su', 'Site visit to a rubber plantation', 'Bình Phước · 11/2023', 'Binh Phuoc · Nov 2023'),
-    'p36': ('hop-cong-truong-vieng-chan', 1280, 960, 'Họp tại văn phòng công trường', 'Meeting at a construction site office', 'Viêng Chăn, Lào · 05/2023', 'Vientiane, Lao PDR · May 2023'),
+    'p36': ('hop-cong-truong-vieng-chan', 1280, 960, 'Họp tại văn phòng công trường', 'Meeting at a construction site office', 'Viêng Chăn, Lào', 'Vientiane, Lao PDR'),  # anh Huy 16/11/2026: place only, no date
     'p21': ('cang-ca-nghi-son', 1280, 960, 'Tàu cá neo đậu tại cảng', 'Fishing boats moored in port', 'Nghi Sơn, Thanh Hóa · 01/2024', 'Nghi Son, Thanh Hoa · Jan 2024'),
     'p40': ('cang-ca-thanh-hoa', 1280, 960, 'Khu cảng cá', 'Fishing port', 'Thanh Hóa · 10/2021', 'Thanh Hoa · Oct 2021'),
     'p38': ('sinh-ke-cau-ngang', 795, 765, 'Nông dân vận chuyển nông sản sau thu hoạch', 'Farmers hauling harvested produce', 'Cầu Ngang, Trà Vinh · 05/2022', 'Cau Ngang, Tra Vinh · May 2022'),
@@ -234,10 +234,10 @@ FIELD = {
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
 PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
-GALLERY = ['p02', 'p42', 'p06', 'p12', 'p21', 'p33', 'p36', 'p38', 'p40', 'b04', 'p01']  # newest first, undated last
+GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p40', 'b04', 'p01']  # newest first, undated last; p02 (hi-vis vests), p33 (rubber) dropped 16/11/2026; p12 now on service 6
 
 
-SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p43'}
+SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p12'}
 
 
 def img_tag(key, L, me, sizes='(min-width:1120px) 1072px, 100vw', lazy=True):
@@ -315,15 +315,15 @@ def home(L):
     stats = ''.join(f'<div class="stat"><b>{n}</b><p>{E(a if v else b)}</p></div>' for n, a, b in STATS)
     groups = ''.join(f'<li>{E(x(g))}</li>' for g in GROUPS)
     feat = ''.join(proj_card(i, SERVICES[i]['projs'][j][0 if v else 1], L, me) for i, j in FEATURED)
-    hcap = PHOTO_SRC['p08']['cap'][0 if v else 1]
-    hbg = img_tag('p08', L, me, '100vw', lazy=False).replace('<img ', '<img class="hbg" fetchpriority="high" ')
-    body = f'''<div class="hero hphoto">{hbg}<div class="wrap">
+    hbg = img_tag('n01', L, me, '100vw', lazy=False).replace('<img ', '<img class="hbgb" fetchpriority="high" ')
+    body = f'''<div class="hxb">{hbg}<div class="wrap"><div class="hxt">
  <p class="kicker">{'LHC Việt Nam · Thành lập 2014, Hà Nội' if v else 'LHC Viet Nam · Established 2014, Ha Noi'}</p>
  <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, Social &amp; Natural Capital Advisory'}</h1>
  <p class="pillars-line">{'Môi trường · Con người · Vốn tự nhiên' if v else 'Environment · People · Natural Capital'}</p>
  <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="btn ghost" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p>
- <div class="stats">{stats}</div>
-</div><p class="hcap">{E(hcap)}</p></div>
+
+</div></div></div>
+<div class="hxs"><div class="wrap"><div class="stats">{stats}</div></div></div>
 
 <section><div class="wrap two">
  <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h2>{'Hơn mười năm tư vấn cho dự án đầu tư công và tư nhân' if v else 'More than ten years advising public and private investment projects'}</h2></div>
@@ -332,7 +332,7 @@ def home(L):
 
 <section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Dịch vụ' if v else 'Services'}</p><h2>{'Sáu nhóm dịch vụ' if v else 'Six service lines'}</h2></div>
- <ul class="scards">{svc_photo_cards(L, me)}</ul>
+ <ul class="cards">{svc_list(L, me)}</ul>
 </div></section>
 
 <section><div class="wrap">
