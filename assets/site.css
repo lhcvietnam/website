@@ -175,3 +175,17 @@ footer .fname2{color:var(--band-ink);opacity:.85}
 .svcphoto.ptop{margin:32px 0 0}
 .hphoto .stat:last-child:nth-child(odd){grid-column:1/-1}
 .prole{display:block;font-size:.82rem;color:var(--muted);margin-top:4px}
+/* QA polish (16/11/2026) */
+h1,h2,h3,.pname{text-wrap:balance}
+p,li{text-wrap:pretty}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px 56px;align-items:start}
+footer .fcol p{margin:0}
+footer .fcol{gap:6px}
+.fnav{grid-template-columns:repeat(2,minmax(0,max-content));gap:8px 32px;justify-self:end}
+footer .fright{grid-column:1/-1;order:3;display:flex;flex-wrap:wrap;gap:6px 24px;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);font-size:.82rem;opacity:.9}
+footer .fright p:first-child{font-family:var(--display);font-style:italic;letter-spacing:.02em}
+@media (max-width:720px){footer .wrap{grid-template-columns:1fr}.fnav{justify-self:start}footer .fright{flex-direction:column;align-items:flex-start}}
+.groups li{display:flex;align-items:center;min-height:72px;line-height:1.45}
+.svcphoto.fp{max-width:none}.svcphoto.fp img{aspect-ratio:5/2;object-position:50% 60%}
+@media (max-width:640px){.svcphoto.fp img{aspect-ratio:4/3}}
+.why h3{font-size:1.12rem}

@@ -215,7 +215,7 @@ FIELD = {
     'p08': ('trang-chu-de-bien-hau-loc', 1085, 604, 'Đê biển và cống ngăn triều ven bãi bồi', 'Sea dyke and tidal sluice on a mudflat coast', 'Hậu Lộc, Thanh Hóa · 11/2024', 'Hau Loc, Thanh Hoa · Nov 2024'),
     'p10': ('doi-ngu-thuc-dia-hau-loc', 1280, 960, 'Nhóm chuyên gia khảo sát hiện trường', 'Expert team on a site survey', 'Hậu Lộc, Thanh Hóa · 10/2024', 'Hau Loc, Thanh Hoa · Oct 2024'),
     'p41': ('lo-gach-mang-thit', 1280, 765, 'Lò gạch thủ công', 'Traditional brick kiln', 'Mang Thít, Vĩnh Long · 06/2025', 'Mang Thit, Vinh Long · Jun 2025'),
-    'p07': ('tham-van-cong-dong-hau-loc', 1280, 960, 'Họp tham vấn cộng đồng tại nhà văn hóa thôn', 'Community consultation in a village hall', 'Hậu Lộc, Thanh Hóa · 11/2024', 'Hau Loc, Thanh Hoa · Nov 2024'),
+    'p07': ('tham-van-cong-dong-hau-loc-v03', 1280, 960, 'Họp tham vấn cộng đồng tại nhà văn hóa thôn', 'Community consultation in a village hall', 'Hậu Lộc, Thanh Hóa · 11/2024', 'Hau Loc, Thanh Hoa · Nov 2024'),
     'p05': ('nha-ven-song-tam-binh', 712, 720, 'Nhà ở ven sông', 'Riverside houses on stilts', 'Tam Bình, Vĩnh Long · 06/2025', 'Tam Binh, Vinh Long · Jun 2025'),
     'p09': ('bai-trieu-hau-loc', 1085, 604, 'Bãi triều và tàu cá lúc nước ròng', 'Tidal flat and fishing boats at low tide', 'Hậu Lộc, Thanh Hóa · 11/2024', 'Hau Loc, Thanh Hoa · Nov 2024'),
     'p43': ('hoi-nghi-du-an', 850, 650, 'Hội nghị của dự án', 'Project meeting', '', ''),
