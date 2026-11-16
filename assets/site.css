@@ -189,3 +189,58 @@ footer .fright p:first-child{font-family:var(--display);font-style:italic;letter
 .svcphoto.fp{max-width:none}.svcphoto.fp img{aspect-ratio:5/2;object-position:50% 60%}
 @media (max-width:640px){.svcphoto.fp img{aspect-ratio:4/3}}
 .why h3{font-size:1.12rem}
+/* layout C (16/11/2026): home service cards with photos, project cards, Projects page */
+.scards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
+.scard{display:flex;flex-direction:column;height:100%;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;color:var(--ink);text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.scard img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:var(--tint)}
+.scard .sbody{display:flex;gap:12px;align-items:baseline;padding:16px 18px 18px}
+.scard .stitle{font-weight:600;line-height:1.4}
+.scard:hover,.scard:focus-visible{border-color:var(--brand);box-shadow:0 6px 18px rgba(13,59,42,.08)}
+.pgrid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.pcard{display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--brand);border-radius:6px}
+.pcard[hidden]{display:none}
+.pcard p{margin:0}
+.pcard .ptop{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:4px}
+.pcard .pfund{grid-row:auto;max-width:none}
+.pcard .pyear{font-size:.85rem;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.pcard .pname{font-family:var(--body);font-size:1rem;line-height:1.45}
+.pcard .pout{color:var(--ink)}
+.pcard .prole{margin-top:auto;padding-top:8px}
+.pcard .psvc{font-size:.82rem;font-weight:600;text-decoration:none;padding-top:10px;border-top:1px solid var(--line);margin-top:8px}
+.pcard .psvc:hover{text-decoration:underline}
+.pgrid+.cta{margin-top:28px}
+.pfilters{display:grid;gap:14px;margin-bottom:28px}
+.pfilters[hidden]{display:none}
+.fgroup .lbl{margin-bottom:8px}
+.fbtns{display:flex;flex-wrap:wrap;gap:8px}
+.fbtns button{font:inherit;font-size:.88rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer}
+.fbtns button:hover{border-color:var(--brand);color:var(--brand)}
+.fbtns button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.fbtns button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.pshow{font-size:.88rem;color:var(--muted)}
+.pnone{margin-top:16px;color:var(--muted)}
+.band .shead h2{color:#fff}
+.band .kicker{color:color-mix(in srgb,var(--band-ink) 75%,transparent)}
+.band .groups{width:100%}
+.band .groups li{background:color-mix(in srgb,var(--band-ink) 6%,transparent);border-color:color-mix(in srgb,var(--band-ink) 22%,transparent);color:var(--band-ink)}
+.band .fin{margin-top:8px;width:100%}
+.band .lbl{color:color-mix(in srgb,var(--band-ink) 75%,transparent)}
+.band .funders a{background:transparent;color:var(--band-ink);border-color:color-mix(in srgb,var(--band-ink) 30%,transparent);border-left-color:var(--band-ink)}
+.band .funders a:hover,.band .funders a:focus-visible{color:#fff;border-color:#fff}
+.band .finrest{color:color-mix(in srgb,var(--band-ink) 80%,transparent)}
+.band .closing{display:grid;gap:20px;justify-items:start;margin-top:16px;padding-top:32px;border-top:1px solid color-mix(in srgb,var(--band-ink) 18%,transparent);width:100%}
+.band .shead{margin-bottom:0}
+.hphoto .stats{grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px}
+.hphoto .stat:last-child:nth-child(odd){grid-column:auto}
+@media (max-width:640px){.hphoto .stats{grid-template-columns:repeat(2,minmax(0,1fr))}.hphoto .stat:last-child:nth-child(odd){grid-column:1/-1}}
+.pcard .pout,.pcard .pmeta{text-align:left;hyphens:manual}
+footer{margin-top:0}
+footer .fnav{column-gap:40px;row-gap:10px}
+@media (max-width:640px){
+ .scards{gap:12px}
+ .scard{flex-direction:row;align-items:stretch}
+ .scard img{width:116px;flex:none;aspect-ratio:auto;height:auto;min-height:100%;object-fit:cover}
+ .scard .sbody{padding:14px 14px;align-items:center}
+ .scard .stitle{font-size:.95rem}
+}
+@media (max-width:640px){header.top nav{flex-wrap:nowrap;justify-content:space-between;gap:0 8px}header.top nav a{font-size:.9rem;white-space:nowrap}}
