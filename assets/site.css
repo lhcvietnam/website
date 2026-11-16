@@ -244,3 +244,15 @@ footer .fnav{column-gap:40px;row-gap:10px}
  .scard .stitle{font-size:.95rem}
 }
 @media (max-width:640px){header.top nav{flex-wrap:nowrap;justify-content:space-between;gap:0 8px}header.top nav a{font-size:.9rem;white-space:nowrap}}
+/* home hero option B, chosen by anh Huy 16/11/2026: bright full-bleed landscape, light overlay, stats strip below */
+.hxb{position:relative;isolation:isolate;min-height:clamp(420px,62vh,600px);display:flex;align-items:flex-end;color:#fff}
+.hbgb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;z-index:-2}
+.hxb::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,30,20,.62) 0%,rgba(10,30,20,.35) 45%,rgba(10,30,20,0) 75%),linear-gradient(0deg,rgba(10,30,20,.35),rgba(10,30,20,0) 50%)}
+.hxb .wrap{width:100%;padding-block:64px 48px}.hxb .hxt{display:grid;gap:20px;max-width:640px}
+.hxb h1{font-size:clamp(2rem,4.6vw,3.3rem);color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.25)}
+.hxb .kicker,.hxb .pillars-line{color:rgba(255,255,255,.92)}
+.hxb .btn{background:#fff;color:#0d3b2a;border-color:#fff}.hxb .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.8)}
+.hxs{background:var(--surface);border-bottom:1px solid var(--line)}.hxs .stats{margin:0;border:0;background:transparent;grid-template-columns:repeat(3,1fr);gap:0}
+.hxs .stat{background:transparent;color:var(--ink);padding:24px 16px;border-left:1px solid var(--line)}.hxs .stat:first-child{border-left:0;padding-left:0}.hxs .stat p{color:var(--muted)}
+.hxs .stat b{color:var(--brand)}
+@media(max-width:720px){.hxb{min-height:440px}.hxb::before{background:linear-gradient(0deg,rgba(10,30,20,.7) 0%,rgba(10,30,20,.3) 60%,rgba(10,30,20,.05) 100%)}.hxs .stats{grid-template-columns:1fr 1fr}.hxs .stat:last-child{grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid var(--line)}}

@@ -315,15 +315,15 @@ def home(L):
     stats = ''.join(f'<div class="stat"><b>{n}</b><p>{E(a if v else b)}</p></div>' for n, a, b in STATS)
     groups = ''.join(f'<li>{E(x(g))}</li>' for g in GROUPS)
     feat = ''.join(proj_card(i, SERVICES[i]['projs'][j][0 if v else 1], L, me) for i, j in FEATURED)
-    hcap = PHOTO_SRC['p08']['cap'][0 if v else 1]
-    hbg = img_tag('p08', L, me, '100vw', lazy=False).replace('<img ', '<img class="hbg" fetchpriority="high" ')
-    body = f'''<div class="hero hphoto">{hbg}<div class="wrap">
+    hbg = img_tag('n01', L, me, '100vw', lazy=False).replace('<img ', '<img class="hbgb" fetchpriority="high" ')
+    body = f'''<div class="hxb">{hbg}<div class="wrap"><div class="hxt">
  <p class="kicker">{'LHC Việt Nam · Thành lập 2014, Hà Nội' if v else 'LHC Viet Nam · Established 2014, Ha Noi'}</p>
  <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, Social &amp; Natural Capital Advisory'}</h1>
  <p class="pillars-line">{'Môi trường · Con người · Vốn tự nhiên' if v else 'Environment · People · Natural Capital'}</p>
  <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="btn ghost" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p>
- <div class="stats">{stats}</div>
-</div><p class="hcap">{E(hcap)}</p></div>
+
+</div></div></div>
+<div class="hxs"><div class="wrap"><div class="stats">{stats}</div></div></div>
 
 <section><div class="wrap two">
  <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h2>{'Hơn mười năm tư vấn cho dự án đầu tư công và tư nhân' if v else 'More than ten years advising public and private investment projects'}</h2></div>
@@ -332,7 +332,7 @@ def home(L):
 
 <section class="tint"><div class="wrap">
  <div class="shead"><p class="kicker">{'Dịch vụ' if v else 'Services'}</p><h2>{'Sáu nhóm dịch vụ' if v else 'Six service lines'}</h2></div>
- <ul class="scards">{svc_photo_cards(L, me)}</ul>
+ <ul class="cards">{svc_list(L, me)}</ul>
 </div></section>
 
 <section><div class="wrap">
