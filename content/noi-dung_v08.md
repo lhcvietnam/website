@@ -372,7 +372,7 @@ Nguồn: Hồ sơ năng lực LHC Việt Nam 2026; tầm nhìn, sứ mệnh, l�
 - **VN:** Trụ sở: Số 38B ngõ 77 Xuân La, phường Tây Hồ, TP. Hà Nội
 - **EN:** Head office: No. 38B, Lane 77, Xuan La Street, Tay Ho Ward, Ha Noi
 
-- **VN / EN:** Điện thoại / Telephone: +84-913 189 758 · Email: admin@lhcviet.com · lhcviet.com
+- **VN / EN:** Điện thoại / Telephone: +84-913 189 758 · Email: info@lhcviet.com · lhcviet.com
 
 - **VN:** Chúng tôi tin tưởng rằng uy tín nghề nghiệp được xây dựng từ chính công việc: hiểu đúng nhiệm vụ, tôn trọng bằng chứng, thực hiện đầy đủ trách nhiệm và duy trì chất lượng của từng sản phẩm.
 - **EN:** We believe that professional reputation is built through the work itself: understanding the assignment correctly, respecting evidence, fully meeting our responsibilities and maintaining the quality of every output.
