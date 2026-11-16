@@ -224,7 +224,7 @@ FIELD = {
     'p42': ('khao-sat-bang-ghe-mang-thit', 712, 720, 'Khảo sát kênh rạch bằng ghe', 'Surveying canals by boat', 'Mang Thít, Vĩnh Long · 06/2025', 'Mang Thit, Vinh Long · Jun 2025'),
     'p12': ('hoi-thao-tam-ky', 1280, 960, 'Hội thảo', 'Workshop', 'Tam Kỳ, Quảng Nam · 06/2024', 'Tam Ky, Quang Nam · Jun 2024'),
     'p33': ('vuon-cao-su-binh-phuoc', 1280, 960, 'Khảo sát tại vườn cao su', 'Site visit to a rubber plantation', 'Bình Phước · 11/2023', 'Binh Phuoc · Nov 2023'),
-    'p36': ('hop-cong-truong-vieng-chan', 1280, 960, 'Họp tại văn phòng công trường', 'Meeting at a construction site office', 'Viêng Chăn, Lào · 05/2023', 'Vientiane, Lao PDR · May 2023'),
+    'p36': ('hop-cong-truong-vieng-chan', 1280, 960, 'Họp tại văn phòng công trường', 'Meeting at a construction site office', 'Viêng Chăn, Lào', 'Vientiane, Lao PDR'),  # anh Huy 16/11/2026: place only, no date
     'p21': ('cang-ca-nghi-son', 1280, 960, 'Tàu cá neo đậu tại cảng', 'Fishing boats moored in port', 'Nghi Sơn, Thanh Hóa · 01/2024', 'Nghi Son, Thanh Hoa · Jan 2024'),
     'p40': ('cang-ca-thanh-hoa', 1280, 960, 'Khu cảng cá', 'Fishing port', 'Thanh Hóa · 10/2021', 'Thanh Hoa · Oct 2021'),
     'p38': ('sinh-ke-cau-ngang', 795, 765, 'Nông dân vận chuyển nông sản sau thu hoạch', 'Farmers hauling harvested produce', 'Cầu Ngang, Trà Vinh · 05/2022', 'Cau Ngang, Tra Vinh · May 2022'),
