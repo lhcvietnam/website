@@ -229,10 +229,11 @@ FIELD = {
     'p38': ('sinh-ke-cau-ngang', 795, 765, 'Nông dân vận chuyển nông sản sau thu hoạch', 'Farmers hauling harvested produce', 'Cầu Ngang, Trà Vinh · 05/2022', 'Cau Ngang, Tra Vinh · May 2022'),
     'p02': ('cang-bien-ha-tinh', 1280, 960, 'Nhóm chuyên gia tại cầu cảng, mang đồ bảo hộ', 'Team on a port jetty in safety gear', 'Hà Tĩnh · 09/2025', 'Ha Tinh · Sep 2025'),
     'n01': ('nui-da-voi-rung', 1280, 719, 'Rừng trên núi đá vôi và ruộng lúa', 'Forest on limestone hills above rice fields', 'Rừng trên núi đá vôi và ruộng lúa', 'Forest on limestone hills above rice fields'),
+    'b04': ('ho-chua-chi-linh', 638, 430, 'Hồ chứa và mặt đập kết hợp đường', 'Reservoir with a dam crest road', 'Chí Linh, Hải Dương · 04/2019', 'Chi Linh, Hai Duong · Apr 2019'),
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
-PHOTO_SRC.update({k: dict(n=n, big=1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
-GALLERY = ['p02', 'p42', 'p06', 'p12', 'p21', 'p33', 'p36', 'p38', 'p40', 'p01']  # newest first, undated last
+PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
+GALLERY = ['p02', 'p42', 'p06', 'p12', 'p21', 'p33', 'p36', 'p38', 'p40', 'b04', 'p01']  # newest first, undated last
 
 
 SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p43'}
@@ -240,9 +241,11 @@ SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p
 
 def img_tag(key, L, me, sizes='(min-width:1120px) 1072px, 100vw', lazy=True):
     f = PHOTO_SRC[key]
-    a = rel(me, f"assets/photos/{f['n']}-800.jpg"); b = rel(me, f"assets/photos/{f['n']}-{f['big']}.jpg")
+    b = rel(me, f"assets/photos/{f['n']}-{f['big']}.jpg")
+    a = rel(me, f"assets/photos/{f['n']}-800.jpg") if f['big'] > 800 else b  # small originals: one file only
     alt = f['alt'][0 if L == 'vi' else 1]
-    return (f'<img src="{a}" srcset="{a} 800w, {b} {f["big"]}w" sizes="{sizes}" width="{f["w"]}" height="{f["h"]}" alt="{E(alt)}"'
+    srcset = f'{a} 800w, {b} {f["big"]}w' if f['big'] > 800 else f'{b} {f["big"]}w'
+    return (f'<img src="{a}" srcset="{srcset}" sizes="{sizes}" width="{f["w"]}" height="{f["h"]}" alt="{E(alt)}"'
             + (' loading="lazy"' if lazy else '') + ' decoding="async">')
 
 
