@@ -169,10 +169,10 @@ def page(key, L, title, desc, body):
 <meta property="og:url" content="{SITE}/{me}">
 <meta property="og:image" content="{SITE}/assets/og.png">
 <meta property="og:locale" content="{'vi_VN' if L == 'vi' else 'en_US'}">
-<meta name="theme-color" content="#0d3b2a">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="{r('assets/favicon.svg')}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,500;7..72,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap">
 <link rel="stylesheet" href="{r('assets/site.css')}?v={CSS_V}">
 {ORG_LD if key == 'home' else ''}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "946c4e495cce4109bbbc216c7077181c"}}'></script>
 </head>
@@ -237,6 +237,7 @@ PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(a
 GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p01']  # newest first, undated last; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
 
 
+HOME_FIELD = ['p42', 'p05', 'p06']  # home 'From the field' band: boat survey, riverside houses, urban canal
 SVC_PHOTO = {'1': 'p41', '2': 'p07', '3': 'n01', '4': 'p05', '5': 'p09', '6': 'p12'}
 
 
@@ -308,48 +309,54 @@ def proj_card(i, f, L, me, filt=False):
             + f'<a class="psvc" href="{rel(me, path_of("services", L))}#{s["id"][L]}">{"Dịch vụ" if v else "Service"} {s["n"]} · {E(SVC_SHORT[i][0 if v else 1])}</a></li>')
 
 
-def home(L):
+def home(L):  # PA4 "Quốc tế" (16/11/2026): typographic hero, one wide landscape, rule-separated lists, three field photos
     me = path_of('home', L)
     x = lambda p: p[0] if L == 'vi' else p[1]
     v = L == 'vi'
-    stats = ''.join(f'<div class="stat"><b>{n}</b><p>{E(a if v else b)}</p></div>' for n, a, b in STATS)
     groups = ''.join(f'<li>{E(x(g))}</li>' for g in GROUPS)
     feat = ''.join(proj_card(i, SERVICES[i]['projs'][j][0 if v else 1], L, me) for i, j in FEATURED)
-    harch = img_tag('n01', L, me, '(min-width:760px) 440px, 78vw', lazy=False).replace('<img ', '<img fetchpriority="high" ')
-    cstats = ''.join(f'<div><b>{n}</b><span>{E(a if v else b)}</span></div>' for n, a, b in STATS)
-    cgrid = ''.join(f'<li><a href="{rel(me, path_of("services", L))}#{s["id"][L]}"><span class="n">{s["n"]}</span>'
-                    f'<span class="t">{E(x(s["title"]))}</span><span class="ar">{"Xem dịch vụ" if v else "View service"} →</span></a></li>' for s in SERVICES)
-    body = f'''<div class="c-hero"><div class="wrap"><div class="c-txt">
- <p class="kicker">{'LHC Việt Nam · Thành lập 2014, Hà Nội' if v else 'LHC Viet Nam · Established 2014, Ha Noi'}</p>
- <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, Social &amp; Natural Capital Advisory'}</h1>
- <p class="c-pil">{' <i></i> '.join(['Môi trường', 'Con người', 'Vốn tự nhiên'] if v else ['Environment', 'People', 'Natural Capital'])}</p>
- <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="btn ghost" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p>
-</div><figure class="c-arch">{harch}</figure></div>
-<div class="wrap"><div class="c-stats">{cstats}</div></div></div>
+    hero = photo('n01', L, me, 'i-photo', '(min-width:1240px) 1160px, 100vw').replace('<figcaption>', '<figcaption hidden>').replace(' loading="lazy"', ' fetchpriority="high"')
+    stats = ''.join(f'<div><b>{n}</b><span>{E(a if v else b)}</span></div>' for n, a, b in STATS)
+    svc = ''.join(f'<li><a href="{rel(me, path_of("services", L))}#{s["id"][L]}"><span class="n">{int(s["n"]):02d}</span>'
+                  f'<span class="t">{E(x(s["title"]))}</span><span class="ar" aria-hidden="true">→</span></a></li>' for s in SERVICES)
+    field = ''.join(f'<li>{photo(k, L, me, "", "(min-width:1240px) 370px, (min-width:760px) 31vw, 78vw")}</li>' for k in HOME_FIELD)
+    body = f'''<div class="i-hero"><div class="wrap">
+ <p class="kicker">{'LHC Việt Nam · Hà Nội, từ 2014' if v else 'LHC Viet Nam · Ha Noi, since 2014'}</p>
+ <h1>{'Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'Environmental, social and natural capital advisory'}</h1>
+ <div class="i-sub"><p class="i-pil">{' · '.join(['Môi trường', 'Con người', 'Vốn tự nhiên'] if v else ['Environment', 'People', 'Natural Capital'])}</p>
+ <p class="cta"><a class="btn" href="{rel(me, path_of('services', L))}">{'Dịch vụ' if v else 'Our services'}</a><a class="more" href="{rel(me, path_of('contact', L))}">{'Liên hệ' if v else 'Contact us'}</a></p></div>
+</div></div>
+<div class="wrap">{hero}<div class="i-stats">{stats}</div></div>
 
-<section><div class="wrap two">
- <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h2>{'Hơn mười năm tư vấn cho dự án đầu tư công và tư nhân' if v else 'More than ten years advising public and private investment projects'}</h2></div>
- <div class="prose"><p>{E(x(intro[0]))}</p><p><a class="more" href="{rel(me, path_of('about', L))}">{'Tìm hiểu về LHC' if v else 'More about LHC'}</a></p></div>
+<section><div class="wrap i-split">
+ <div class="shead"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p></div>
+ <div><p class="i-lead">{E(x(intro[0]))}</p><p><a class="more" href="{rel(me, path_of('about', L))}">{'Tìm hiểu về LHC' if v else 'More about LHC'}</a></p></div>
 </div></section>
 
-<section class="tint"><div class="wrap">
+<section class="soft"><div class="wrap i-split">
  <div class="shead"><p class="kicker">{'Dịch vụ' if v else 'Services'}</p><h2>{'Sáu nhóm dịch vụ' if v else 'Six service lines'}</h2></div>
- <ol class="c-grid">{cgrid}</ol>
+ <ol class="i-svc">{svc}</ol>
+</div></section>
+
+<section><div class="wrap">
+ <div class="shead"><p class="kicker">{'Từ hiện trường' if v else 'From the field'}</p><h2>{'Khảo sát, tham vấn và giám sát tại địa bàn dự án' if v else 'Surveys, consultation and monitoring on site'}</h2></div>
+ <ul class="i-field">{field}</ul>
+ <p class="cta" style="margin-top:40px"><a class="more" href="{rel(me, path_of('projects', L))}#{'hinh-anh' if v else 'photos'}">{'Xem thêm hình ảnh' if v else 'More photos'}</a></p>
 </div></section>
 
 <section><div class="wrap">
  <div class="shead"><p class="kicker">{'Dự án tiêu biểu' if v else 'Selected projects'}</p><h2>{'Một số dự án gần đây' if v else 'Recent work'}</h2></div>
  <ul class="pgrid">{feat}</ul>
- <p class="cta"><a class="btn" href="{rel(me, path_of('projects', L))}">{'Xem tất cả dự án' if v else 'All projects'}</a></p>
+ <p class="cta"><a class="btn ghost" href="{rel(me, path_of('projects', L))}">{'Xem tất cả dự án' if v else 'All projects'}</a></p>
 </div></section>
 
-<section class="tint"><div class="wrap">
+<section class="soft"><div class="wrap i-split">
  <div class="shead"><p class="kicker">{'Khách hàng và nguồn vốn' if v else 'Clients and financing'}</p><h2>{'Chúng tôi làm việc với' if v else 'We work with'}</h2></div>
- <ul class="groups">{groups}</ul>
- <div class="fin"><h3 class="lbl">{'Nguồn vốn của các dự án' if v else 'Project financing'}</h3>{fin_strip(L)}</div>
- </div></section>
+ <div><ul class="groups">{groups}</ul>
+ <div class="fin"><h3 class="lbl">{'Nguồn vốn của các dự án' if v else 'Project financing'}</h3>{fin_strip(L)}</div></div>
+</div></section>
 
-<section class="c-close"><div class="wrap"><p class="credo">{E(x(CREDO))}</p>
+<section class="i-dark"><div class="wrap"><p class="kicker">{'Cam kết' if v else 'Our commitment'}</p><p class="credo">{E(x(CREDO))}</p>
  <p class="cta"><a class="btn" href="{rel(me, path_of('contact', L))}">{'Liên hệ với chúng tôi' if v else 'Get in touch'}</a></p>
 </div></section>'''
     title = 'LHC Việt Nam · Tư vấn môi trường, xã hội và vốn tự nhiên' if v else 'LHC Viet Nam · Environmental, Social & Natural Capital Advisory'
@@ -367,7 +374,7 @@ def about(L):
     steps = ''.join(f'<li>{E(x(s))}</li>' for s in STEPS)
     whys = ''.join(f'<li><h3>{E(x(h))}</h3><p>{E(x(t))}</p></li>' for h, t in WHY)
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Giới thiệu' if v else 'About us'}</p><h1>{'LHC Việt Nam' if v else 'LHC Viet Nam'}</h1></div></div>
-<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div>{photo('consult', L, path_of('about', L))}</div></section>
+<section><div class="wrap"><div class="prose wide">{''.join(f'<p>{E(x(p))}</p>' for p in intro)}</div></div></section>
 <section class="tint" id="{'tam-nhin' if v else 'vision'}"><div class="wrap">
  <div class="shead"><p class="kicker">{'Tầm nhìn · Sứ mệnh · Giá trị cốt lõi' if v else 'Vision · Mission · Core values'}</p><h2>{'Mỗi dự án là một cam kết.' if v else 'Every project is a commitment.'}</h2></div>
  <div class="vmrow">
@@ -392,7 +399,6 @@ def about(L):
   <div><h3 class="sub">{'Năm nguyên tắc' if v else 'Five principles'}</h3><ol class="princ">{prs}</ol></div>
   <div><h3 class="sub">{'Quy trình sáu bước' if v else 'Six-step process'}</h3><ol class="steps">{steps}</ol></div>
  </div>
- {photo('team', L, path_of('about', L), 'photo svcphoto qphoto')}
 </div></section>'''
     title = 'Giới thiệu' if v else 'About'
     desc = (x(vision)[:155] + '…')
@@ -698,8 +704,6 @@ def build(out=OUT, include_drafts=False):
         (OUT / old / 'index.html').write_text(redirect_page(old, new), encoding='utf-8')
     (OUT / '404.html').write_text(NOT_FOUND.replace('{CSS_V}', CSS_V), encoding='utf-8')
     shutil.copy(ROOT / 'assets' / 'site.css', OUT / 'assets' / 'site.css')
-    for svg in ('contour.svg', 'contour-dark.svg'):  # topographic line pattern (home hero, page heads, closing band)
-        shutil.copy(ROOT / 'assets' / svg, OUT / 'assets' / svg)
     shutil.copytree(ROOT / 'assets' / 'photos', OUT / 'assets' / 'photos')
     (OUT / 'assets' / 'favicon.svg').write_text(favicon(), encoding='utf-8')
     og_image(OUT / 'assets' / 'og.png')
