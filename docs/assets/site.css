@@ -256,3 +256,26 @@ footer .fnav{column-gap:40px;row-gap:10px}
 .hxs .stat{background:transparent;color:var(--ink);padding:24px 16px;border-left:1px solid var(--line)}.hxs .stat:first-child{border-left:0;padding-left:0}.hxs .stat p{color:var(--muted)}
 .hxs .stat b{color:var(--brand)}
 @media(max-width:720px){.hxb{min-height:440px}.hxb::before{background:linear-gradient(0deg,rgba(10,30,20,.7) 0%,rgba(10,30,20,.3) 60%,rgba(10,30,20,.05) 100%)}.hxs .stats{grid-template-columns:1fr 1fr}.hxs .stat:last-child{grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid var(--line)}}
+/* home design PA3 "Đường đồng mức" (topographic contours), chosen by anh Huy 16/11/2026 */
+.c-hero{background:color-mix(in srgb,var(--tint) 55%,var(--surface)) url(contour.svg) center/1200px 600px repeat;border-bottom:1px solid var(--line)}
+.c-hero .wrap:first-child{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center;padding-block:72px 40px}
+.c-txt{display:grid;gap:22px}.c-txt h1{font-size:clamp(2.3rem,5vw,4rem);line-height:1.1}
+.c-pil{color:var(--muted);font-size:1.08rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.c-pil i{width:6px;height:6px;border-radius:50%;background:var(--brand);display:inline-block}
+.c-txt .btn.ghost{color:var(--brand);background:var(--surface)}
+.c-arch{margin:0;justify-self:end;width:min(100%,440px)}.c-arch img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:220px 220px 12px 12px;box-shadow:0 20px 50px rgba(13,59,42,.18)}
+.c-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.c-stats div{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:14px 24px;display:flex;gap:12px;align-items:baseline}
+.c-stats b{font-family:var(--display);font-size:1.6rem;color:var(--brand)}.c-stats span{color:var(--muted);font-size:.9rem}
+.c-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.c-grid a{position:relative;display:grid;gap:12px;align-content:start;height:100%;padding:24px 24px 22px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--ink);text-decoration:none;overflow:hidden;transition:border-color .2s,transform .2s}
+.c-grid a::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;border:1px solid rgba(0,122,75,.18);box-shadow:0 0 0 14px rgba(0,122,75,.04),0 0 0 28px rgba(0,122,75,.03)}
+.c-grid .n{width:40px;height:40px;border-radius:50%;background:var(--tint);color:var(--brand);display:grid;place-items:center;font-family:var(--display);font-size:1.2rem}
+.c-grid .t{font-weight:600;line-height:1.45}.c-grid .ar{font-size:.85rem;color:var(--brand);font-weight:600;margin-top:4px}.c-grid a:hover{border-color:var(--brand);transform:translateY(-2px)}
+.c-svc{background:var(--tint)}
+.c-close{background:var(--band) url(contour-dark.svg) center/1200px 600px repeat;color:var(--band-ink);border:0}.c-close .wrap{display:grid;gap:24px;justify-items:start}
+.c-close .credo{border-left-color:rgba(232,241,236,.6);max-width:60ch;font-size:1.35rem}.c-close .btn{background:#fff;color:#0d3b2a;border-color:#fff}
+@media(max-width:760px){.c-hero .wrap:first-child{grid-template-columns:1fr;gap:28px;padding-block:40px 24px}.c-arch{justify-self:center;width:78%}.c-stats{grid-template-columns:1fr}.c-grid{grid-template-columns:1fr}}
+.phead{background:color-mix(in srgb,var(--tint) 55%,var(--surface)) url(contour.svg) center/1200px 600px repeat}
+.c-close .cta{margin:0}
+.c-arch img{height:auto}
+@media(max-width:760px){.c-arch{width:100%}.c-arch img{aspect-ratio:1/1;border-radius:180px 180px 12px 12px}}
