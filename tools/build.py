@@ -225,6 +225,7 @@ FIELD = {
     'p33': ('vuon-cao-su-binh-phuoc', 1280, 960, 'Khảo sát tại vườn cao su', 'Site visit to a rubber plantation', 'Bình Phước · 11/2023', 'Binh Phuoc · Nov 2023'),
     'p36': ('hop-cong-truong-vieng-chan', 1280, 960, 'Họp tại văn phòng công trường', 'Meeting at a construction site office', 'Viêng Chăn, Lào', 'Vientiane, Lao PDR'),  # anh Huy 16/11/2026: place only, no date
     'p21': ('cang-ca-nghi-son', 1280, 960, 'Tàu cá neo đậu tại cảng', 'Fishing boats moored in port', 'Nghi Sơn, Thanh Hóa · 01/2024', 'Nghi Son, Thanh Hoa · Jan 2024'),
+    'p22': ('phoi-luoi-nghi-son', 1280, 960, 'Ngư dân gỡ và phơi lưới trên bến', 'Fishers sorting and drying nets on the quay', 'Nghi Sơn, Thanh Hóa · 01/2024', 'Nghi Son, Thanh Hoa · Jan 2024'),  # faces blurred
     'p40': ('cang-ca-thanh-hoa', 1280, 960, 'Khu cảng cá', 'Fishing port', 'Thanh Hóa · 10/2021', 'Thanh Hoa · Oct 2021'),
     'p38': ('sinh-ke-cau-ngang', 795, 765, 'Nông dân vận chuyển nông sản sau thu hoạch', 'Farmers hauling harvested produce', 'Cầu Ngang, Trà Vinh · 05/2022', 'Cau Ngang, Tra Vinh · May 2022'),
     'p02': ('cang-bien-ha-tinh', 1280, 960, 'Nhóm chuyên gia tại cầu cảng, mang đồ bảo hộ', 'Team on a port jetty in safety gear', 'Hà Tĩnh · 09/2025', 'Ha Tinh · Sep 2025'),
@@ -233,7 +234,7 @@ FIELD = {
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
 PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
-GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p01']  # newest first, undated last; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
+GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p22']  # anh Huy 17/11/2026: p01 (Ha Noi meeting) replaced by p22, a field photo; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
 
 
 HOME_STRIP = ['p42', 'p05', 'p06']  # home: three field photos under the service cards (anh Huy 16/11/2026: original design, more photos)
