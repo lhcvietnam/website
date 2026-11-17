@@ -226,6 +226,8 @@ FIELD = {
     'p36': ('hop-cong-truong-vieng-chan', 1280, 960, 'Họp tại văn phòng công trường', 'Meeting at a construction site office', 'Viêng Chăn, Lào', 'Vientiane, Lao PDR'),  # anh Huy 16/11/2026: place only, no date
     'p21': ('cang-ca-nghi-son', 1280, 960, 'Tàu cá neo đậu tại cảng', 'Fishing boats moored in port', 'Nghi Sơn, Thanh Hóa · 01/2024', 'Nghi Son, Thanh Hoa · Jan 2024'),
     'p22': ('phoi-luoi-nghi-son', 1280, 960, 'Ngư dân gỡ và phơi lưới trên bến', 'Fishers sorting and drying nets on the quay', 'Nghi Sơn, Thanh Hóa · 01/2024', 'Nghi Son, Thanh Hoa · Jan 2024'),  # faces blurred
+    'p16': ('tau-ca-bach-long-vi', 1280, 960, 'Khảo sát tại cảng cá trên đảo', 'Survey at an island fishing port', 'Bạch Long Vĩ, Hải Phòng · 01/2024', 'Bach Long Vi, Hai Phong · Jan 2024'),  # faces and boat marks blurred
+    'b02': ('suoi-cao-bang', 687, 441, 'Suối và cầu tràn vùng núi', 'Mountain stream and low-water crossing', 'Cao Bằng · 2024', 'Cao Bang · 2024'),
     'p40': ('cang-ca-thanh-hoa', 1280, 960, 'Khu cảng cá', 'Fishing port', 'Thanh Hóa · 10/2021', 'Thanh Hoa · Oct 2021'),
     'p38': ('sinh-ke-cau-ngang', 795, 765, 'Nông dân vận chuyển nông sản sau thu hoạch', 'Farmers hauling harvested produce', 'Cầu Ngang, Trà Vinh · 05/2022', 'Cau Ngang, Tra Vinh · May 2022'),
     'p02': ('cang-bien-ha-tinh', 1280, 960, 'Nhóm chuyên gia tại cầu cảng, mang đồ bảo hộ', 'Team on a port jetty in safety gear', 'Hà Tĩnh · 09/2025', 'Ha Tinh · Sep 2025'),
@@ -233,8 +235,8 @@ FIELD = {
     'b04': ('ho-chua-chi-linh', 638, 430, 'Hồ chứa và mặt đập kết hợp đường', 'Reservoir with a dam crest road', 'Chí Linh, Hải Dương · 04/2019', 'Chi Linh, Hai Duong · Apr 2019'),
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
-PHOTO_SRC.update({k: dict(n=n, big=638 if k == 'b04' else 1280, w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
-GALLERY = ['p42', 'p06', 'p21', 'p36', 'p38', 'p22']  # anh Huy 17/11/2026: p01 (Ha Noi meeting) replaced by p22, a field photo; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
+PHOTO_SRC.update({k: dict(n=n, big={'b04': 638, 'b02': 687}.get(k, 1280), w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
+GALLERY = ['p42', 'p08', 'p06', 'p16', 'b02', 'p38']  # anh Huy 17/11/2026: one photo per province, no indoor meetings (p36 Vientiane, p01, p21, p22 out); anh Huy 17/11/2026: p01 (Ha Noi meeting) replaced by p22, a field photo; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
 
 
 HOME_STRIP = ['p42', 'p05', 'p06']  # home: three field photos under the service cards (anh Huy 16/11/2026: original design, more photos)
@@ -442,8 +444,8 @@ def photos_page(L):
     body = f'''<div class="phead"><div class="wrap"><p class="kicker">{'Hình ảnh' if v else 'Photos'}</p><h1>{'Hình ảnh hiện trường' if v else 'Field photos'}</h1>
  <p class="lede">{'Một số hình ảnh LHC Việt Nam chụp trong quá trình khảo sát, tham vấn và giám sát dự án. Khuôn mặt và thông tin nhận dạng đã được làm mờ.' if v else 'A selection of photos taken by LHC Viet Nam during project surveys, consultations and monitoring. Faces and identifying details have been blurred.'}</p></div></div>
 <section><div class="wrap"><div class="gallery">{items}</div></div></section>'''
-    desc = ('Hình ảnh hiện trường của LHC Việt Nam: khảo sát, tham vấn cộng đồng và giám sát dự án tại Việt Nam và Lào.'
-            if v else 'Field photos by LHC Viet Nam: surveys, community consultation and project monitoring in Viet Nam and Lao PDR.')
+    desc = ('Hình ảnh hiện trường của LHC Việt Nam: khảo sát, tham vấn cộng đồng và giám sát dự án tại nhiều địa phương.'
+            if v else 'Field photos by LHC Viet Nam: surveys, community consultation and project monitoring across Viet Nam.')
     return page('photos', L, 'Hình ảnh hiện trường' if v else 'Field photos', desc, body)
 
 
