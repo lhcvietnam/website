@@ -236,7 +236,7 @@ FIELD = {
     'p06': ('kenh-do-thi-ha-tinh', 1280, 960, 'Kênh thoát nước đô thị', 'Urban drainage canal', 'Thành phố Hà Tĩnh · 11/2024', 'Ha Tinh City · Nov 2024'),
 }
 PHOTO_SRC.update({k: dict(n=n, big={'b04': 638, 'b02': 687}.get(k, 1280), w=w, h=h, alt=(av, ae), cap=(cv, ce)) for k, (n, w, h, av, ae, cv, ce) in FIELD.items()})
-GALLERY = ['p42', 'p08', 'p06', 'p16', 'b02', 'p38']  # anh Huy 17/11/2026: one photo per province, no indoor meetings (p36 Vientiane, p01, p21, p22 out); anh Huy 17/11/2026: p01 (Ha Noi meeting) replaced by p22, a field photo; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
+GALLERY = ['p42', 'p08', 'p06', 'p16', 'b02']  # anh Huy 17/11 09:26: keep Vinh Long, drop p38 Tra Vinh (same province after 2025 merger); anh Huy 17/11/2026: one photo per province, no indoor meetings (p36 Vientiane, p01, p21, p22 out); anh Huy 17/11/2026: p01 (Ha Noi meeting) replaced by p22, a field photo; dropped by anh Huy 16/11/2026: p02 (hi-vis vests), p33 (rubber), p40 (Thanh Hoa 10/2021), b04 (Hai Duong 2019); p12 now on service 6
 
 
 HOME_STRIP = ['p42', 'p05', 'p06']  # home: three field photos under the service cards (anh Huy 16/11/2026: original design, more photos)
